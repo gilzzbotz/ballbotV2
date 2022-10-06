@@ -21,7 +21,18 @@
 ```bash
 > git clone https://github.com/bolaxd/ballbotV2
 ```
-
+## Install dependency
+Masuk ke Direktory dulu
+```bash
+> cd ballbotV2
+```
+```bash
+> npm install
+```
+Or
+```bash
+> yarn install
+```
 ## How to setting?
 ```Setting/settings.js```
 ```js
@@ -36,6 +47,5 @@
 ```
 ## How to jalanin?
 ```bash
-> cd ballbotV2
 > npm test 
 ```
