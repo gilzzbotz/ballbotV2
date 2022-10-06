@@ -9,5 +9,5 @@ export const handle = (m, conn) => {
 		]
 	let teks = `[				Menu				]\n\n`
 	for (let i of menu.sort()) teks += `*${m.preff + i}*\n`
-	return conn.sendMessage(m.chat, {text: teks, mentions: [m.sender]})
+	conn.sendMessage(m.chat, {text: teks, mentions: [m.sender]})
 }

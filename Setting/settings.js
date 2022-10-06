@@ -21,10 +21,12 @@ const config = {
 	// FAIL MESSAGES
 	connect: 'Bot telah tersambung ke Konneksi server Whatsapp web',
 	sukses: 'Berhasil :)',
+	gagal: 'Kegagalan :(, mohon ulangi command anda\nJika ini salah Mohon report ke owner',
 	owner: 'Khususon Owner',
 	forgc: 'Untuk di group :]',
 	admin: 'Kamu bukan orang dalam-_\nKhusus admin',
 	botadmin: 'bot bukan orang dalem-_\nAdminin dong',
+	notext: 'Teks nya mana?',
 	wait: 'Sek Loading...',
 	ok: 'Oke Min',
 }

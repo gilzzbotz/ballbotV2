@@ -12,21 +12,24 @@ const findAdmin = (arr) => {
 	return admins || []
 }
 export const commands = async (conn, m) => {
+	const sendErr = (err) => conn.sendMessage(q.developer[0]+q.idwa, {text: `Command : ${m.preff+m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}` })
 	try {
-		const sendErr = (err) => conn.sendMessage(q.developer[0]+q.idwa, {text: `Command : ${m.preff+m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}` })
-		let meta = (m.isGc ? await conn.groupMetadata(m.chat).catch(e => null) : {}) || {}
-		let members = (m.isGc ? await meta.participants : []) || []
-		let admins = (m.isGc ? await findAdmin(members): {}) || {}
-		let isAdmin = m.isGc ? admins.includes(m.sender) : false
-		let isBotAdmin = m.isGc ? admins.includes(m.bot) : false
-	
+		let grup = {}
+		grup.meta = (m.isGc ? await conn.groupMetadata(m.chat).catch(e => null) : {}) || {}
+		grup.members = (m.isGc ? await grup.meta.participants : []) || []
+		grup.admins = (m.isGc ? await findAdmin(grup.members): {}) || {}
+		grup.isAdmin = m.isGc ? grup.admins.includes(m.sender) : false
+		grup.isBotAdmin = m.isGc ? grup.admins.includes(m.bot) : false
+		//import('handle-before.js').then(v => v.before(m, conn, grup)).catch(e=> sendErr(e))
 			/* Aku dapet dari : https://stackoverflow.com/questions/36367532/how-can-i-conditionally-import-an-es6-module */
-		if (/(menu|help)$/i.test(m.command)) import('./feature/b-menu.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
-		if (/(creator|owner|developer)$/i.test(m.command)) import('./feature/b-creator.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-		if (/(group|link|groupbot)$/i.test(m.command)) import('./feature/b-gcbot.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-		if (/(script|sc)$/i.test(m.command)) import('./feature/b-script.js').then(v => v.handle(m, q, conn, bb)).catch(e=>sendErr(e));
-		if (/(hidetag|ht)$/i.test(m.command)) import('./feature/g-hidetag.js').then(v => v.handle(m, q, conn, isAdmin, isBotAdmin, members)).catch(e=>sendErr(e));
-		if (/(tagall|tgl)$/i.test(m.command)) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, isAdmin, isBotAdmin, members)).catch(e=>sendErr(e));
+		if (/(menu|help)$/.test(m.command)) import('./feature/b-menu.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
+		if (/(creator|owner|developer)$/.test(m.command)) import('./feature/b-creator.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
+		if (/(group|link|groupbot)$/.test(m.command)) import('./feature/b-gcbot.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
+		if (/(script|sc)$/.test(m.command)) import('./feature/b-script.js').then(v => v.handle(m, q, conn, bb)).catch(e=>sendErr(e));
+		if (/(hidetag|ht)$/.test(m.command)) import('./feature/g-hidetag.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(tagall|tgl)$/.test(m.command)) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(setname|setgcname)$/.test(m.command)) import('./feature/g-setname.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(setdesk|setdesc|setdeskripsi)$/.test(m.command)) import('./feature/g-setdesc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 	} catch (e) {
 		sendErr(e)
 	}

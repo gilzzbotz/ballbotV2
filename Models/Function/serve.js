@@ -44,9 +44,8 @@ export const connect = async(serve) => {
 		serve.sendFvid = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + q.idwa),...opts}, ephe)
 		/* 
 		* Send Button teks
-		* @param jid
-		* @param serve
-		* @returns [...[ID,  DISPLAY]]
+		* @param chatId, text, footer, but, [dis, id], men, opts
+		* @returns video, fileLength, caption, footer, buttons, mentions, headerType, opts
 		* By Bolaxd
 		*/
 		serve.sendbut = async (chatId, text, footer, but = [...[dis, id]], men, opts = {}) => {
@@ -54,9 +53,26 @@ export const connect = async(serve) => {
 			for (let i of but) button.push({ buttonId: i[1], buttonText: { displayText: i[0] }, type: 1 })
 			serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, footer, buttons: button, mentions: [men], headerType: 2,...opts}, ephe)
 		}
-		// Text [ Fake ]
+		/* 
+		* Send Teks biasaa
+		* @param chatId, text, quoted, opts
+		* @returns text, quoted, opts
+		* By Bolaxd
+		*/
+		serve.sendteks = async (chatId, text, quoted = '', opts = {}) => serve.sendMessage(chatId, { text }, {quoted}, ephe, ...opts)
+		/* 
+		* Send Tag teks (with Fake video)
+		* @param chatId, text, men, opts
+		* @returns text, mentions, opts
+		* By Bolaxd
+		*/
 		serve.sendTag = async (chatId, text, men, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [men], ...opts}, ephe)
-		// Fake Img
+		/* 
+		* Send Fake Dokument
+		* @param chatId, text
+		* @returns text, document, options
+		* By Bolaxd
+		*/
 		serve.sendFImg = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {document: { url: q.video }, fileLength:(await Math.floor(Math.random()*10360047029)), fileName: 'Ballbot-V2', mimetype: 'application/bin', pageCount: 37383838383838383, caption: text}, ephe)
 		
 		

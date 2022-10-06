@@ -6,5 +6,5 @@ export const handle = async (m, q, conn) => {
 		teks += `group ${p++}\n`
 		teks += `https://chat.whatsapp.com/${result}`
 	}
-	return conn.sendFvid(m.chat, teks, {mentions: [m.isGc ? m.sender : '']})
+	conn.sendFvid(m.chat, teks, {mentions: [m.isGc ? m.sender : '']})
 }

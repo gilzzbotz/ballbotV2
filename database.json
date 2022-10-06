@@ -1,13 +1,19 @@
 {
   "user": {
     "6281949742417@s.whatsapp.net": {
-      "lastused": 1665047429651
+      "lastused": 1665071877733
     },
     "6285241426014@s.whatsapp.net": {
       "lastused": 1665046554798
     },
     "6285780423829@s.whatsapp.net": {
       "lastused": 1665046855842
+    },
+    "6288990007937@s.whatsapp.net": {
+      "lastused": 1665064523153
+    },
+    "6282142917550@s.whatsapp.net": {
+      "lastused": 1665071387567
     }
   },
   "chat": {
@@ -15,6 +21,9 @@
       "detect": true
     },
     "120363041493745571@g.us": {
+      "detect": true
+    },
+    "120363028169856287@g.us": {
       "detect": true
     }
   },
