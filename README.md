@@ -49,3 +49,9 @@ Or
 ```bash
 > npm test 
 ```
+
+## Penulis
+[![bolaxd](https://github.com/bolaxd.png?size=100)](https://github.com/bolaxd)
+## Big Thanks To
+[![Adiwajshing](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajsing)
+[![Fokusdotid](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)
