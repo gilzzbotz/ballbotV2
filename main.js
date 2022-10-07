@@ -34,7 +34,7 @@ const mulai = async() => {
 	   // Menangani koneksi
 	   serve.ev.on('connection.update', async (iqbal) => con(iqbal, serve, mulai));
 	   // Menangani acara { pesan, update }
-	   serve.ev.on('messages.upsert', async (iqbal) => msgUp(iqbal, serve));
+	   serve.ev.on('messages.upsert', async (iqbal) => msgUp(iqbal, serve, store));
 	   // Simpan credensial login
 	   serve.ev.on('creds.update', saveCreds);
 	} catch (e) {

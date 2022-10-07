@@ -24,6 +24,7 @@ const config = {
 	gagal: 'Kegagalan :(, mohon ulangi command anda\nJika ini salah Mohon report ke owner',
 	owner: 'Khususon Owner',
 	forgc: 'Untuk di group :]',
+	forimg: 'Kirim image lalu dengan caption command / atau kirim image dulu lalu di reply text command',
 	admin: 'Kamu bukan orang dalam-_\nKhusus admin',
 	botadmin: 'bot bukan orang dalem-_\nAdminin dong',
 	notext: 'Teks nya mana?',

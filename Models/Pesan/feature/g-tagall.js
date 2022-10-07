@@ -5,5 +5,5 @@ export const handle = async (m, q, conn, grup) => {
 	let uvuv = members.map(v => conn.createJid(v.id))
 	let pesan = `Pesan: ${m.query ? m.query : 'Tidak ada'}\n`
 		 uvuv.map(v=> pesan += `@${v.split('@')[0]}\n`)
-	conn.sendTag(m.chat, pesan, uvuv)
+	conn.sendMessage(m.chat, {text: pesan, mentions: uvuv}, {quoted: m})
 }

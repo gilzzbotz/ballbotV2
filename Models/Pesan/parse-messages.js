@@ -14,9 +14,10 @@ const dlMessage = async (message) => {
 	}
 }
 // jangan di utek utek coii, biarin aja ini
-export const parser = (serve, m) => {
+export const parser = (serve, m, s) => {
 	try {
 		if (!m) return m
+		let M = proto.WebMessageInfo
 		if (m.key) {
 			m.id = m.key.id
 			m.isBaileys = m.id.startsWith('BAE5') && m.id.length === 16
@@ -32,9 +33,8 @@ export const parser = (serve, m) => {
 		if (m.message) { 
 			m.mtype = getContentType(m.message) /*Dapatkan dan meng Inisialisasi content ambil dari baileys*/
 			m.msg = (m.mtype == 'viewOnceMessage' ? m.message[m.mtype].message[getContentType(m.message[m.mtype].message)] : m.message[m.mtype])
-			m.dl = () => dlMessage(m.msg)
-			let quoted = m.quoted = m.msg.contextInfo ? m.msg.contextInfo.quotedMessage : null
-			m.tagJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
+			let quntul = m.quoted = m.msg.contextInfo ? m.msg.contextInfo.quotedMessage : null
+			m.mentionedJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
 			if (m.quoted) {
 				let type = Object.keys(m.quoted)[0]
 				m.quoted = m.quoted[type]
@@ -47,8 +47,23 @@ export const parser = (serve, m) => {
 				m.quoted.sender = serve.createJid(m.msg.contextInfo.participant)
 				m.quoted.fromMe = m.quoted.sender === (serve.user && serve.user.id)
 				m.quoted.text = m.quoted.text || m.quoted.caption || m.quoted.conversation || m.quoted.contentText || m.quoted.selectedDisplayText || m.quoted.title || ''
-				m.quoted.tagJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
-				m.quoted.dl = () => dlMessage(m.quoted)
+				m.quoted.mentionedJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
+				m.quoted.download = () => dlMessage(m.quoted)
+				m.getQuotedObj = m.getQuotedMessage = async () => {
+					if (!m.quoted.id) return false
+					let q = await s.loadMessage(m.chat, m.quoted.id, serve)
+					return parser(serve, q, s)
+				};
+				let vM = m.quoted.fakeObj = M.fromObject({
+					key: {
+						remoteJid: m.quoted.chat,
+						fromMe: m.quoted.fromMe,
+						id: m.quoted.id
+					},
+					message: quntul,
+					...(m.isGc ? { participant: m.quoted.sender } : { participant: undefined })
+				});
+				m.quoted.delete = () => serve.sendMessage(m.quoted.chat, { delete: vM.key })
 			}
 			m.text = m.msg.text || m.msg.caption || m.message.conversation || m.msg.contentText || m.msg.selectedDisplayText || m.msg.title || ''
 	   	let cmdd = (m.mtype === 'conversation') ? m.message.conversation: (m.mtype == 'imageMessage') ? m.message.imageMessage.caption: (m.mtype == 'videoMessage') ? m.message.videoMessage.caption: (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
@@ -58,6 +73,7 @@ export const parser = (serve, m) => {
 			m.query = m.args.join(" ")
 			m.command = m.cmd.slice(1).trim().split(/ +/).shift().toLowerCase()
 		}
+		if (m.msg.url) m.download = () => dlMessage(m.msg)
 	   return m;
 	} catch (e) {
 		console.log(e);

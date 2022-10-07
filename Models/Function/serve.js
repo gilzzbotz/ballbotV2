@@ -1,5 +1,6 @@
-const { jidDecode } = (await import('@adiwajshing/baileys')).default;
+const { jidDecode, downloadContentFromMessage } = (await import('@adiwajshing/baileys')).default;
 const { chain } = (await import('lodash')).default;
+import fs from 'fs';
 import { LowSync, JSONFileSync } from 'lowdb';
 import q from '../../Setting/settings.js'
 
@@ -74,8 +75,6 @@ export const connect = async(serve) => {
 		* By Bolaxd
 		*/
 		serve.sendFImg = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {document: { url: q.video }, fileLength:(await Math.floor(Math.random()*10360047029)), fileName: 'Ballbot-V2', mimetype: 'application/bin', pageCount: 37383838383838383, caption: text}, ephe)
-		
-		
 		// DB
 		serve.db = new LowSync(new JSONFileSync(q.namedb+'.json'));
 		serve.loadDB = async function loadDB() {

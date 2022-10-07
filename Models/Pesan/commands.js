@@ -12,7 +12,7 @@ const findAdmin = (arr) => {
 	return admins || []
 }
 export const commands = async (conn, m) => {
-	const sendErr = (err) => conn.sendMessage(q.developer[0]+q.idwa, {text: `Command : ${m.preff+m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}` })
+	const sendErr = (err) => conn.sendMessage(q.developer[0]+q.idwa, {text: `Command : /${m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}` })
 	try {
 		let grup = {}
 		grup.meta = (m.isGc ? await conn.groupMetadata(m.chat).catch(e => null) : {}) || {}
@@ -30,7 +30,8 @@ export const commands = async (conn, m) => {
 		if (/(tagall|tgl)$/.test(m.command)) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(setname|setgcname)$/.test(m.command)) import('./feature/g-setname.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(setdesk|setdesc|setdeskripsi)$/.test(m.command)) import('./feature/g-setdesc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(setppgc|setppgrup|setppgroup)$/.test(m.command)) import('./feature/g-setppgc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 	} catch (e) {
-		sendErr(e)
+		console.log(e);
 	}
 }
