@@ -10,7 +10,7 @@ const dlMessage = async (message) => {
 		for await(const chunk of stream) buffer = Buffer.concat([buffer, chunk])
 		return buffer
 	} catch (e) {
-		console.error(e);
+		console.log(e);
 	}
 }
 // jangan di utek utek coii, biarin aja ini

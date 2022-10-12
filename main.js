@@ -38,7 +38,7 @@ const mulai = async() => {
 	   // Simpan credensial login
 	   serve.ev.on('creds.update', saveCreds);
 	} catch (e) {
-		console.error(e);
+		console.log(e);
 	}
 }
 mulai();

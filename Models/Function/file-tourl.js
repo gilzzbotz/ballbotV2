@@ -5,36 +5,40 @@ import { JSDOM } from 'jsdom';
 import https from 'https';
 
 let agent = new https.Agent({ rejectUnauthorized: false });
-Buffer.toArrayBuffer = function toArrayBufferV2() {
-        const ab = new ArrayBuffer(this.length);
-        const view = new Uint8Array(ab);
-        for (let i = 0; i < this.length; ++i) {
-            view[i] = this[i];
-        }
-        return ab;
+function toArrayBuffer(buf) {
+    const ab = new ArrayBuffer(buf.length);
+    const view = new Uint8Array(ab);
+    for (let i = 0; i < buf.length; ++i) {
+        view[i] = buf[i];
     }
-Buffer.toArrayBufferV2 = function toArrayBuffer() {
-        return this.buffer.slice(this.byteOffset, this.byteOffset + this.byteLength)
+    return ab;
 }
 /*
  * Created Bochielteam : https://github.com/bochielteam/
  * Gw copas ini, karena gw lemah klo bikin scraper
  * Gak ada PC, modal hp :v
  */
-export default async buffer => {
-  const { ext, mime } = await fileTypeFromBuffer(buffer)
-  let form = new FormData()
-  let baseUrl = 'https://telegra.ph/upload'
-  const blob = new Blob([buffer.toArrayBuffer()], { type: mime })
-  form.append('file', blob, 'tmp.' + ext)
-  let res = await fetch(baseUrl, {
-    method: 'POST',
-    body: form
-  })
-  let img = await res.json()
-  if (img.error) throw img.error
-  return 'https://telegra.ph' + img[0].src
+export function TelegraPh (Path) {
+	return new Promise (async (resolve, reject) => {
+		if (!fs.existsSync(Path)) return reject(new Error("File not Found"))
+		try {
+			const form = new BodyForm();
+			form.append("file", fs.createReadStream(Path))
+			const data = await  axios({
+				url: "https://telegra.ph/upload",
+				method: "POST",
+				headers: {
+					...form.getHeaders()
+				},
+				data: form
+			})
+			return resolve("https://telegra.ph" + data.data[0].src)
+		} catch (err) {
+			return reject(new Error(String(err)))
+		}
+	})
 }
+
 export const webp2png = async(source) => {
   let form = new FormData()
   let isUrl = typeof source === 'string' && /https?:\/\//.test(source)

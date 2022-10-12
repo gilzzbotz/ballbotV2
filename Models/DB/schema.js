@@ -1,15 +1,17 @@
 const isNum = x => typeof x == 'number' && isNaN(x);
 
 export const db = async (serve, smsg) => {
-	if (serve.db.data == null) await serve.loadDB();
+	//if (serve.db.data == null) await serve.loadDB();
 	try {
 		if (smsg.sender) {
 			let user = serve.db.data.user[smsg.sender]
 			if (typeof user !== 'object') serve.db.data.user[smsg.sender] = {}
 			if (user) {
 			if (!isNum(user.lastused)) user.lastused = new Date*1
+			if (!('ban') in user) user.ban = false
 			} else serve.db.data.user[smsg.sender] = {
-			lastused: new Date*1
+				lastused: new Date*1,
+				ban: false
 			}
 		}
 		if (smsg.isGc) {
@@ -17,8 +19,10 @@ export const db = async (serve, smsg) => {
 			if (typeof chat !== 'object') serve.db.data.chat[smsg.chat] = {}
 			if (chat) {
 				if (!('detect') in chat) chat.detect = true
+				if (!('link') in chat) chat.link = false
 			} else serve.db.data.chat[smsg.chat] = {
-				detect: true
+				detect: true,
+				link: false
 			}
 		}
 		let bot = serve.db.data.set[smsg.bot]
@@ -31,6 +35,6 @@ export const db = async (serve, smsg) => {
 			public: true
 		}
 	} catch (e) {
-		console.error(e)
+		console.log(e)
 	}
 }

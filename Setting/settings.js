@@ -6,7 +6,7 @@ const config = {
 	developer: ['6281949742417', '6287839067186'],
 	moderator: [],
 	browser: ['bolaxd', 'safari', '1.0.0'],
-	autoload: 30000,
+	autoload: 10000,
 	sensitive: 0.7, // Kesensitivitas command
 	namedb: 'database',
 	gcbot: ['120363041493745571@g.us'], /* Only ID group */
@@ -27,6 +27,9 @@ const config = {
 	forimg: 'Kirim image lalu dengan caption command / atau kirim image dulu lalu di reply text command',
 	admin: 'Kamu bukan orang dalam-_\nKhusus admin',
 	botadmin: 'bot bukan orang dalem-_\nAdminin dong',
+	active: 'Sebelom nya sudah aktif :v',
+	unactive: 'Sebelom nya sudah tidak aktif :v',
+	linkadm: 'Admin Group tidak mengijinkan link group untuk di share :)',
 	notext: 'Teks nya mana?',
 	wait: 'Sek Loading...',
 	ok: 'Oke Min',
