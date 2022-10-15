@@ -5,7 +5,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "nodemon main.js"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -13,9 +13,7 @@
   },
   "keywords": [
     "bot",
-    "bot",
     "whatsapp",
-    "bot",
     "multi",
     "device",
     "multi",
@@ -25,8 +23,7 @@
     "fungsi",
     "hehe",
     "boy",
-    "bang",
-    "bot"
+    "bang"
   ],
   "author": "bolaxd",
   "license": "ISC",
@@ -45,7 +42,6 @@
     "lodash": "^4.17.21",
     "lowdb": "^3.0.0",
     "node-fetch": "^3.2.10",
-    "nodemon": "^2.0.20",
     "qrcode-terminal": "^0.12.0",
     "similarity": "^1.2.1"
   }

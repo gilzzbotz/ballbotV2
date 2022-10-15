@@ -6,10 +6,15 @@ export const handle = (m, conn) => {
 			['script', ''],
 		]
 	let grup = [
+			['info', ''],
 			['hidetag', 'query/null'],
 			['tagall', 'query/null'],
 			['setname', 'query/reply'],
 			['setdesc', 'query/reply'],
+			['kick', 'query/reply/tag'],
+			['add', 'query/reply/tag'],
+			['demote', 'query/reply/tag'],
+			['promote', 'query/reply/tag'],
 		]
 	let owner = [
 			['ban', 'numb/tag/reply'],

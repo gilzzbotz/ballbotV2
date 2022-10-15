@@ -3,10 +3,16 @@ export const handle = async (m, q, conn, grup) => {
 	let { meta, isBotAdmin, isAdmin } = grup
 	if (m.query == 'link') {
 		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
-		if (!conn.db.data.chat[m.chat].link) return conn.sendteks(m.chat, q.linkadm, m)
-		conn.groupInviteCode(m.chat)
-			.then(v => conn.sendteks(m.chat, `Link Group\n\nhttps://chat.whatsapp.com/${v}`, m))
-			.catch(e => conn.sendteks(m.chat, q.gagal, m))
+			if (isAdmin) {
+				conn.groupInviteCode(m.chat)
+					.then(v => conn.sendteks(m.chat, `Link Group\n\nhttps://chat.whatsapp.com/${v}`, m))
+					.catch(e => conn.sendteks(m.chat, q.gagal, m))
+			} else if (!isAdmin) {
+				if (!conn.db.data.chat[m.chat].link) return conn.sendteks(m.chat, q.linkadm, m)
+				conn.groupInviteCode(m.chat)
+					.then(v => conn.sendteks(m.chat, `Link Group\n\nhttps://chat.whatsapp.com/${v}`, m))
+					.catch(e => conn.sendteks(m.chat, q.gagal, m))
+			}
 	} else if (m.query == 'gcbuka') {
 		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
 		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
@@ -63,7 +69,7 @@ export const handle = async (m, q, conn, grup) => {
 			 teks += `Pembuat Group: *${meta.owner == undefined ? 'Kosong' : meta.owner.split('@')[0]}*\n`
 			 teks += `Edit info: *${meta.restrict ? 'Hanya admin' : 'Semua member'}*\n`
 			 teks += `Kirim pesan: ${meta.announce ? 'Hanya admin' : 'Semua member'}\n`
-			 teks += `Detect Group: *${meta.restrict ? 'Online' : 'Offline'}*\n`
+			 teks += `Detect Group: *${conn.db.data.chat[m.chat].detect ? 'Online' : 'Offline'}*\n`
 			 teks += `Bagikan link Group: *${conn.db.data.chat[m.chat].link ? 'Boleh' : 'Jangan'}*\n`
 		list.push(['Link Group ini', '.info link', 'Link group whatsapp ini'])
 		if (isAdmin) {

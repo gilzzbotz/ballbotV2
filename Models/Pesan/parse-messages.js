@@ -73,7 +73,7 @@ export const parser = (serve, m, s) => {
 			m.query = m.args.join(" ")
 			m.command = m.cmd.slice(1).trim().split(/ +/).shift().toLowerCase()
 		}
-		if (m.msg.url) m.download = () => dlMessage(m.msg)
+		// if (m.msg.url) m.download = () => dlMessage(m.msg)
 	   return m;
 	} catch (e) {
 		console.log(e);

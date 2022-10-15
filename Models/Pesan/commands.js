@@ -23,7 +23,7 @@ export const commands = async (conn, m) => {
 			/* Aku dapet dari : https://stackoverflow.com/questions/36367532/how-can-i-conditionally-import-an-es6-module */
 		//import('handle-before.js').then(v => v.before(m, conn, grup)).catch(e=> sendErr(e))
 		//Bot
-		if (conn.db.data.user[m.sender].ban) return conn.sendteks(m.chat, 'Anda Telah diban Owner!!!', m)
+		//if (conn.db.data.user[m.sender].ban) return conn.sendteks(m.chat, 'Anda Telah diban Owner!!!', m)
 		if (/(menu|help)/.test(m.command)) import('./feature/b-menu.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
 		if (/(creator|owner|developer)/.test(m.command)) import('./feature/b-creator.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
 		if (/(group|link|groupbot)/.test(m.command)) import('./feature/b-gcbot.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
@@ -31,12 +31,17 @@ export const commands = async (conn, m) => {
 		//Group
 		if (/(hidetag|ht)/.test(m.command)) import('./feature/g-hidetag.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(info|group|grup)/.test(m.command)) import('./feature/g-info.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(kick|kik)/.test(m.command)) import('./feature/g-kick.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/add/.test(m.command)) import('./feature/g-add.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(promote|pm)/.test(m.command)) import('./feature/g-pm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
+		if (/(demote|dm)/.test(m.command)) import('./feature/g-dm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(tagall|tgl)/.test(m.command)) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(setname|setgcname)/.test(m.command)) import('./feature/g-setname.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		if (/(setdesk|setdesc|setdeskripsi)/.test(m.command)) import('./feature/g-setdesc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		// if (/(setppgc|setppgrup|setppgroup)/i.test(m.command)) import('./feature/g-setppgc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
 		//Owner
 		if (/(block|blck)/.test(m.command)) import('./feature/o-block.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
+		if (/join/.test(m.command)) import('./feature/o-join.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
 		if (/(unblock|unblck)/.test(m.command)) import('./feature/o-unblock.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
 		if (/ban/.test(m.command)) import('./feature/o-ban.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
 		if (/[$]/.test(m.text)) import('./feature/o-exec.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));

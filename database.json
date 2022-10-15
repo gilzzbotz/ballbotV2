@@ -1,119 +1,71 @@
 {
   "user": {
     "6281949742417@s.whatsapp.net": {
-      "lastused": 1665572309982,
-      "ban": false
-    },
-    "6285241426014@s.whatsapp.net": {
-      "lastused": 1665046554798
-    },
-    "6285780423829@s.whatsapp.net": {
-      "lastused": 1665046855842
+      "join": 1665821997293,
+      "add": 1324,
+      "detect": true,
+      "link": false,
+      "antidel": false,
+      "antilink": false,
+      "antivn": false,
+      "antistik": false,
+      "lastused": 1665821997293
     },
     "6288990007937@s.whatsapp.net": {
-      "lastused": 1665572303794,
-      "ban": false
-    },
-    "6282142917550@s.whatsapp.net": {
-      "lastused": 1665071387567,
-      "ban": true
-    },
-    "6287734910547@s.whatsapp.net": {
-      "lastused": 1665569567271
-    },
-    "6285381039923@s.whatsapp.net": {
-      "lastused": 1665212297525
-    },
-    "6289513766044@s.whatsapp.net": {
-      "lastused": 1665132661064
-    },
-    "6289631008798@s.whatsapp.net": {
-      "lastused": 1665210527824
-    },
-    "6285848453523@s.whatsapp.net": {
-      "lastused": 1665082381568
-    },
-    "628881663146@s.whatsapp.net": {
-      "lastused": 1665086049774
-    },
-    "6289604297720@s.whatsapp.net": {
-      "lastused": 1665109355954
-    },
-    "6283894014399@s.whatsapp.net": {
-      "lastused": 1665555744578
-    },
-    "6282122334034@s.whatsapp.net": {
-      "lastused": 1665132560891
-    },
-    "6285888204823@s.whatsapp.net": {
-      "lastused": 1665200794982
-    },
-    "6282279068243@s.whatsapp.net": {
-      "lastused": 1665569973363
-    },
-    "6285654077688@s.whatsapp.net": {
-      "lastused": 1665562024128
-    },
-    "6285271259083@s.whatsapp.net": {
-      "lastused": 1665207509385
-    },
-    "6281938808987@s.whatsapp.net": {
-      "lastused": 1665219482167
-    },
-    "6285162796664@s.whatsapp.net": {
-      "lastused": 1665220610736
-    },
-    "6285658252446@s.whatsapp.net": {
-      "lastused": 1665473637613
-    },
-    "6281779992543@s.whatsapp.net": {
-      "lastused": 1665561652335
-    },
-    "13068016884@s.whatsapp.net": {
-      "lastused": 1665571685518
-    },
-    "6282148045146@s.whatsapp.net": {
-      "lastused": 1665429224603
-    },
-    "6287871279266@s.whatsapp.net": {
-      "lastused": 1665555739192
-    },
-    "6285845991346@s.whatsapp.net": {
-      "lastused": 1665555741241,
-      "ban": false
-    },
-    "6283115387666@s.whatsapp.net": {
-      "lastused": 1665555749387,
-      "ban": false
+      "lastused": 1665820795017,
+      "ban": true,
+      "join": 1665820795017,
+      "add": 1324
     },
     "62895323231914@s.whatsapp.net": {
-      "lastused": 1665559803486,
+      "lastused": 1665637993505,
       "ban": false
     },
     "6281248009076@s.whatsapp.net": {
-      "lastused": 1665559898651,
+      "lastused": 1665650494568,
       "ban": false
     },
-    "6287863856639@s.whatsapp.net": {
-      "lastused": 1665559882562,
+    "13068016884@s.whatsapp.net": {
+      "lastused": 1665684735781,
       "ban": false
     },
-    "6289646664914@s.whatsapp.net": {
-      "lastused": 1665561096891,
+    "6287839067186@s.whatsapp.net": {
+      "lastused": 1665715224723,
+      "ban": false
+    },
+    "6285654077688@s.whatsapp.net": {
+      "lastused": 1665740445729,
+      "ban": false
+    },
+    "6289631008798@s.whatsapp.net": {
+      "lastused": 1665740766854,
+      "ban": false,
+      "join": 1665740766854,
+      "add": 1324
+    },
+    "6287734910547@s.whatsapp.net": {
+      "lastused": 1665823306687,
+      "ban": false,
+      "join": 1665823306687,
+      "add": 1324
+    },
+    "6285381039923@s.whatsapp.net": {
+      "lastused": 1665740556233,
       "ban": false
     }
   },
   "chat": {
     "120363044348536706@g.us": {
-      "detect": true
-    },
-    "120363041493745571@g.us": {
       "detect": true,
       "link": false
     },
+    "120363041493745571@g.us": {
+      "detect": false,
+      "link": true
+    },
     "120363028169856287@g.us": {
       "detect": true,
-      "link": true
+      "link": false
     }
   },
   "set": {

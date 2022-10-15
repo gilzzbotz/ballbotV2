@@ -1,7 +1,7 @@
 const { jidDecode, downloadContentFromMessage } = (await import('@adiwajshing/baileys')).default;
 const { chain } = (await import('lodash')).default;
 import { fileTypeFromBuffer } from 'file-type';
-import { LowSync, JSONFileSync } from 'lowdb';
+import { Low, JSONFile } from 'lowdb';
 import q from '../../Setting/settings.js'
 import fetch from 'node-fetch'
 import fs from 'fs';
@@ -10,31 +10,38 @@ export const connect = async(serve) => {
 	try {
 		// Buat ephemeral biar ngga ada tanda serunya
 		const ephe = { ephemeralExpiration: 8640000, forwardingScore: 99999, isForwarded: true }
-            /**
-             * getBuffer hehe
-             * @param {fs.PathLike} PATH 
-             * @param {Boolean} saveToFile
-             */
-           serve.getfile = async (PATH, saveToFile = false) => {
-                let res, filename
-                const data = Buffer.isBuffer(PATH) ? PATH : PATH instanceof ArrayBuffer ? PATH.toBuffer() : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await fetch(PATH)).buffer() : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
-                if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
-                const type = await fileTypeFromBuffer(data) || {
-                    mime: 'application/octet-stream',
-                    ext: '.bin'
-                }
-                if (data && saveToFile && !filename) (filename = path.join(__dirname, '../../../tmp/' + new Date * 1 + '.' + type.ext), await fs.promises.writeFile(filename, data))
-                return { res, filename, ...type, data, deleteFile() {
-                        return filename && fs.promises.unlink(filename)
-                    }
-                }
-            }
-        
+	   /**
+	    * getBuffer hehe
+	    * @param {*} PATH 
+	    * @param {*} saveToFile
+	    * @returns
+	    */
+	     serve.getfile = async (PATH, saveToFile = false) => {
+	          let res, filename
+	          const data = Buffer.isBuffer(PATH) ? PATH : PATH instanceof ArrayBuffer ? PATH.toBuffer() : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await fetch(PATH)).buffer() : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
+	          if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
+	          const type = await fileTypeFromBuffer(data) || {
+	              mime: 'application/octet-stream',
+	              ext: '.bin'
+	          }
+	          if (data && saveToFile && !filename) (filename = path.join(__dirname, '../../../tmp/' + new Date * 1 + '.' + type.ext), await fs.promises.writeFile(filename, data))
+	          return { res, filename, ...type, data, deleteFile() {
+	                  return filename && fs.promises.unlink(filename)
+	              }
+	          }
+	      }
+       
 		/* 
 		* Create jid at id
-		* @param id
-		* @param serve
-		* @returns jid
+		* @param {*} chatId
+		* @returns chatId
+		* By Bolaxd
+		*/
+		serve.ments = async (query) => [...query.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + q.idwa)
+		/* 
+		* Create jid at id
+		* @param {*} chatId
+		* @returns chatId
 		* By Bolaxd
 		*/
 		serve.createJid = (chatId) => {
@@ -46,29 +53,36 @@ export const connect = async(serve) => {
 		}
 		/* 
 		* Send Kontak maybe
-		* @param jid
-		* @param serve
-		* @returns [...['bolaxd', '62xxxx', 'descripsi']]
+		* @param {*} chatId
+		* @param {*} teks
+		* @param {*} arr
+		* @param {*} quoted
+		* #param {*} opts
+		* @returns
 		* By Bolaxd
 		*/
-		serve.sendkon = async (jid, teks, arr = [...[name, jid, deskripsi]], quoted = '', opts = {}) => {
+		serve.sendkon = async (chatId, teks, arr = [...[0, 1, 2]], quoted = '', opts = {}) => {
 			var push = []
 			for (let i of arr) push.push({displayName: '', vcard: 'BEGIN:VCARD\n'+'VERSION:3.0\n'+'FN:'+i[0]+'\n'+'ORG:'+i[2]+';\n'+'TEL;type=CELL;type=VOICE;waid='+i[1]+':'+i[1]+'\n'+'END:VCARD' })
-			serve.sendMessage(jid, { contacts: { displayName: teks, contacts: push }, quoted, ...opts}, ephe)
+			serve.sendMessage(chatId, { contacts: { displayName: teks, contacts: push }, quoted, ...opts}, ephe)
 		}
 		/* 
 		* Send Fake Video
-		* @param jid
-		* @param serve
-		* @returns text fake
-		* @media video
+		* @param {*} chatId
+		* @param {*} text
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendFvid = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + q.idwa),...opts}, ephe)
 		/* 
 		* Send Button teks
-		* @param chatId, text, footer, but, [dis, id, des], men, opts
-		* @returns video, fileLength, caption, footer, buttons, mentions, headerType, opts
+		* @param {*} chatId
+		* @param {*} teks
+		* @param {*} foot
+		* @param {*} but
+		* @param {*} quoted
+		* @param {*} opts
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendlist = async (chatId, teks, foot, but = [...[dis = '', id = '', des = '' ]], quoted = '') => {
@@ -78,26 +92,37 @@ export const connect = async(serve) => {
 		}
 		/* 
 		* Send Button teks
-		* @param chatId, text, footer, but, [dis, id], men, opts
-		* @returns video, fileLength, caption, footer, buttons, mentions, headerType, opts
+		* @param chatId
+		* @param {*} text
+		* @param {*} footer
+		* @param {*} but
+		* @param {*} men
+		* @param {*} opts
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendbut = async (chatId, text, footer, but = [...[dis, id]], men, opts = {}) => {
 			let button = []
 			for (let i of but) button.push({ buttonId: i[1], buttonText: { displayText: i[0] }, type: 1 })
-			serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, footer, buttons: button, mentions: [men], headerType: 2,...opts}, ephe)
+			serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, footer, buttons: button, headerType: 2,...opts}, ephe)
 		}
 		/* 
 		* Send Teks biasaa
-		* @param chatId, text, quoted, opts
-		* @returns text, quoted, opts
+		* @param {*} chatId
+		* @param {*} text
+		* @param {*} quoted
+		* @param {*} opts
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendteks = async (chatId, text, quoted = '', opts = {}) => serve.sendMessage(chatId, { text, ephe, ...opts}, {quoted})
 		/* 
 		* Send Tag teks (with Fake video)
-		* @param chatId, text, men, opts
-		* @returns text, mentions, opts
+		* @param {*} chatId
+		* @param {*} text
+		* @param {*} men
+		* @param {*} opts
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendTag = async (chatId, text, men, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [men], ...opts}, ephe)
@@ -108,8 +133,9 @@ export const connect = async(serve) => {
 		* By Bolaxd
 		*/
 		serve.sendFImg = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {document: { url: q.video }, fileLength:(await Math.floor(Math.random()*10360047029)), fileName: 'Ballbot-V2', mimetype: 'application/bin', pageCount: 37383838383838383, caption: text}, ephe)
+		
 		// DB
-		serve.db = new LowSync(new JSONFileSync(q.namedb+'.json'));
+		serve.db = new Low(new JSONFile(q.namedb+'.json'));
 		serve.loadDB = async function loadDB() {
 			if (serve.db.READ) return new Promise((resolve) => setInterval(()=> (!serve.db.READ ? (clearInterval(this), resolve(serve.db.data == null ? serve.loadDB() : serve.db.data)) : null), 1000))
 			if (serve.db.data !== null) return
