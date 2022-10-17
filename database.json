@@ -1,76 +1,40 @@
 {
   "user": {
-    "6281949742417@s.whatsapp.net": {
-      "join": 1665821997293,
+    "13068016884@s.whatsapp.net": {
+      "lastused": 1665997058257,
+      "ban": false
+    },
+    "6281779992543@s.whatsapp.net": {
+      "lastused": 1665990879366,
+      "ban": false
+    }
+  },
+  "chat": {
+    "120363041493745571@g.us": {
+      "join": 1665997058257,
       "add": 1324,
       "detect": true,
       "link": false,
       "antidel": false,
       "antilink": false,
       "antivn": false,
-      "antistik": false,
-      "lastused": 1665821997293
-    },
-    "6288990007937@s.whatsapp.net": {
-      "lastused": 1665820795017,
-      "ban": true,
-      "join": 1665820795017,
-      "add": 1324
-    },
-    "62895323231914@s.whatsapp.net": {
-      "lastused": 1665637993505,
-      "ban": false
-    },
-    "6281248009076@s.whatsapp.net": {
-      "lastused": 1665650494568,
-      "ban": false
-    },
-    "13068016884@s.whatsapp.net": {
-      "lastused": 1665684735781,
-      "ban": false
-    },
-    "6287839067186@s.whatsapp.net": {
-      "lastused": 1665715224723,
-      "ban": false
-    },
-    "6285654077688@s.whatsapp.net": {
-      "lastused": 1665740445729,
-      "ban": false
-    },
-    "6289631008798@s.whatsapp.net": {
-      "lastused": 1665740766854,
-      "ban": false,
-      "join": 1665740766854,
-      "add": 1324
-    },
-    "6287734910547@s.whatsapp.net": {
-      "lastused": 1665823306687,
-      "ban": false,
-      "join": 1665823306687,
-      "add": 1324
-    },
-    "6285381039923@s.whatsapp.net": {
-      "lastused": 1665740556233,
-      "ban": false
-    }
-  },
-  "chat": {
-    "120363044348536706@g.us": {
-      "detect": true,
-      "link": false
-    },
-    "120363041493745571@g.us": {
-      "detect": false,
-      "link": true
+      "antistik": false
     },
     "120363028169856287@g.us": {
+      "join": 1665991104959,
+      "add": 1324,
       "detect": true,
-      "link": false
+      "link": false,
+      "antidel": false,
+      "antilink": false,
+      "antivn": false,
+      "antistik": false
     }
   },
   "set": {
     "6282142917550@s.whatsapp.net": {
       "update": [],
+      "blgc": [],
       "public": true
     }
   }

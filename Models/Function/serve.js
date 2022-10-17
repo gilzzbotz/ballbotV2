@@ -1,7 +1,8 @@
-const { jidDecode, downloadContentFromMessage } = (await import('@adiwajshing/baileys')).default;
+const { jidDecode, downloadContentFromMessage } = (await import('baileys')).default;
 const { chain } = (await import('lodash')).default;
 import { fileTypeFromBuffer } from 'file-type';
-import { Low, JSONFile } from 'lowdb';
+import { JSONFile } from '../DB/jsonfile.js';
+import { Low } from '../DB/Low.js';
 import q from '../../Setting/settings.js'
 import fetch from 'node-fetch'
 import fs from 'fs';
@@ -101,10 +102,10 @@ export const connect = async(serve) => {
 		* @returns
 		* By Bolaxd
 		*/
-		serve.sendbut = async (chatId, text, footer, but = [...[dis, id]], men, opts = {}) => {
+		serve.sendbut = async (chatId, text, footer, but = [...[dis, id]], quoted = '', opts = {}) => {
 			let button = []
 			for (let i of but) button.push({ buttonId: i[1], buttonText: { displayText: i[0] }, type: 1 })
-			serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, footer, buttons: button, headerType: 2,...opts}, ephe)
+			serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, footer, buttons: button, headerType: 2,...opts}, { quoted }, ephe)
 		}
 		/* 
 		* Send Teks biasaa
@@ -151,6 +152,7 @@ export const connect = async(serve) => {
 			}
 			serve.db.chain = chain(serve.db.data)
 		}
+		
 		return serve
 	} catch (e) {
 		console.log(e);

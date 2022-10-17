@@ -1,4 +1,4 @@
-const { DisconnectReason } = (await import('@adiwajshing/baileys')).default;
+const { DisconnectReason } = (await import('baileys')).default;
 import q from '../Setting/settings.js';
 import b from './Fake/function.js';
 import { Boom } from '@hapi/boom';

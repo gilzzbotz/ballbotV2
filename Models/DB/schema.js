@@ -4,28 +4,29 @@ export const db = async (q, serve, smsg) => {
 	try {
 // Untuk User nya [ otomatis add pas gk ada ]
 		let user = serve.db.data.user[smsg.sender]
-		if (typeof user !== 'object') serve.db.data.user[smsg.sender] = {}
+		if (typeof user !== 'object') user = {}
 		if (user) {
-		if (!isNum(user.lastused)) serve.db.data.user[smsg.sender].lastused = new Date*1
-		if (!('ban') in user) serve.db.data.user[smsg.sender].ban = false
-		} else serve.db.data.user[smsg.sender] = {
+		if (!isNum(user.lastused)) user.lastused = new Date*1
+		if (!'ban' in user) user.ban = false
+		} else user = {
 			lastused: new Date*1,
 			ban: false
 		}
 	// Group kalo belom ada ini buat bukti
 		if (smsg.chat.endsWith(q.idgc)) {
 			let cht = serve.db.data.chat[smsg.chat]
-			if (typeof cht !== 'object') serve.db.data.user[smsg.sender] = {}
+			if (typeof cht !== 'object') cht = {}
 			if (cht) {
-				if (!isNum(user.join)) serve.db.data.user[smsg.sender].join = new Date()*1
-				if (!isNum(user.add)) serve.db.data.user[smsg.sender].add = 1324
-				if (!('detect') in user) serve.db.data.user[smsg.sender].detect = true
-				if (!('link') in user) serve.db.data.user[smsg.sender].link = false
-				if (!('antidel') in user) serve.db.data.user[smsg.sender].antidel = false
-				if (!('antilink') in user) serve.db.data.user[smsg.sender].antilink = false
-				if (!('antivn') in user) serve.db.data.user[smsg.sender].antivn = false
-				if (!('antistik') in user) serve.db.data.user[smsg.sender].antistik = false
-			} else serve.db.data.user[smsg.sender] = {
+				if (!isNum(cht.join)) cht.join = new Date()*1
+				if (!isNum(cht.add)) cht.add = 1324
+				if (!'detect' in cht) cht.detect = true
+				if (!'link' in cht) cht.link = false
+				if (!'antidel' in cht) cht.antidel = false
+				if (!'antilink' in cht) cht.antilink = false
+				if (!'antivn' in cht) cht.antivn = false
+				if (!'antistik' in cht) cht.antistik = false
+				if (!'antibot' in cht) cht.antibot = false
+			} else cht = {
 				join: new Date()*1,
 				add: 1324,
 				detect: true,
@@ -39,12 +40,12 @@ export const db = async (q, serve, smsg) => {
 // Bot nya dah auto insert
 		let bb = await serve.createJid(serve.user.id);
 		let bot = serve.db.data.set[bb]
-		if (typeof bot !== 'object') serve.db.data.set[bb] = {}
+		if (typeof bot !== 'object') bot = {}
 		if (bot) {
-			if (!('update') in bot) serve.db.data.set[bb].update = []
-			if (!('blgc') in bot) serve.db.data.set[bb].blgc = []
-			if (!('public') in bot) serve.db.data.set[bb].public = true
-		} else serve.db.data.set[bb] = {
+			if (!('update') in bot) bot.update = []
+			if (!('blgc') in bot) bot.blgc = []
+			if (!('public') in bot) bot.public = true
+		} else bot = {
 			update: [],
 			blgc: [],
 			public: true

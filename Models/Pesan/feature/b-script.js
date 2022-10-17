@@ -1,5 +1,4 @@
 export const handle = (m, q, conn, bb) => {
-	let men = m.isGc ? m.sender : null
 	let teks = `[				Source Code Bot ini				]\n\n`
 		teks += `Kunjungi Github ${q.name} :\n`
 		teks += `${q.home}\n`
@@ -8,5 +7,5 @@ export const handle = (m, q, conn, bb) => {
 	let buttons = [
 		['Oke min', 'hehe']
 		]
-	conn.sendbut(m.chat, teks, foot, buttons, men)
+	conn.sendbut(m.chat, teks, foot, buttons, m)
 }

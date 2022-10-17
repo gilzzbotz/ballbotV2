@@ -1,4 +1,4 @@
-const { default: HOHOHOHO, useMultiFileAuthState, makeInMemoryStore } = (await import('@adiwajshing/baileys')).default
+const { default: HOHOHOHO, useMultiFileAuthState, makeInMemoryStore } = (await import('baileys')).default;
 import { msgUp } from './Models/Pesan/msg-upsert.js';
 import { connect } from './Models/Function/serve.js';
 import { con } from './Models/connection.js';

@@ -6,7 +6,7 @@ const config = {
 	developer: ['6281949742417', '6287839067186'],
 	moderator: [],
 	browser: ['bolaxd', 'safari', '1.0.0'],
-	autoload: 60000,
+	autoload: 20000,
 	sensitive: 0.7, // Kesensitivitas command
 	namedb: 'database',
 	mingc: 20, // Minimal Bot Join group 

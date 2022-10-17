@@ -1,4 +1,4 @@
-const { proto, downloadContentFromMessage, getContentType } = (await import('@adiwajshing/baileys')).default;
+const { proto, downloadContentFromMessage, getContentType } = (await import('baileys')).default;
 import q from '../../Setting/settings.js';
 
 const dlMessage = async (message) => {
