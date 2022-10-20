@@ -2,7 +2,6 @@ import simi from 'similarity'; //Matikan jika kamu gk perlu kemiripan commands
 import { format } from 'util';
 import q from '../../Setting/settings.js';
 import d from '../Fake/function.js';
-
 const z = q.sensitive
 const bb = (teks) => '```'+teks+'```'
 
@@ -11,8 +10,9 @@ const findAdmin = (arr) => {
 	for (let i of arr) i.admin === "superadmin" ? admins.push(i.id) :  i.admin === "admin" ? admins.push(i.id) : ''
 	return admins || []
 }
-export const commands = async (conn, m) => {
-	const sendErr = async(err) => await conn.sendMessage(q.developer[0]+q.idwa, {text: `Command : /${m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}` })
+export const commands = async (up, conn, m) => {
+	const cmd = (teks) => simi(teks, m.command) > z
+	const sendE = async(err) => { for (let u of q.developer) setTimeout(async function() { await conn.sendteks(u+q.idwa, `Command : /${m.command}\nOleh : ${m.sender}\n\n${bb(format(err))}`, d.f1) }, 2000) }
 	try {
 		let grup = {}
 		grup.meta = (m.isGc ? await conn.groupMetadata(m.chat).catch(e => null) : {}) || {}
@@ -21,30 +21,51 @@ export const commands = async (conn, m) => {
 		grup.isAdmin = m.isGc ? grup.admins.includes(m.sender) : false
 		grup.isBotAdmin = m.isGc ? grup.admins.includes(m.bot) : false
 			/* Aku dapet dari : https://stackoverflow.com/questions/36367532/how-can-i-conditionally-import-an-es6-module */
-		//import('handle-before.js').then(v => v.before(m, conn, grup)).catch(e=> sendErr(e))
+
 		//Bot
-			if (/(menu|help)/.test(m.command)) import('./feature/b-menu.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
-			if (/(creator|owner|developer)/.test(m.command)) import('./feature/b-creator.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/(group|link|groupbot)/.test(m.command)) import('./feature/b-gcbot.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/(script|sc)/.test(m.command)) import('./feature/b-script.js').then(v => v.handle(m, q, conn, bb)).catch(e=>sendErr(e));
-			//Group
-			if (/(hidetag|ht)/.test(m.command)) import('./feature/g-hidetag.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(info|group|grup)/.test(m.command)) import('./feature/g-info.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(kick|kik)/.test(m.command)) import('./feature/g-kick.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/add/.test(m.command)) import('./feature/g-add.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(promote|pm)/.test(m.command)) import('./feature/g-pm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(demote|dm)/.test(m.command)) import('./feature/g-dm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(tagall|tgl)/.test(m.command)) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(setname|setgcname)/.test(m.command)) import('./feature/g-setname.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			if (/(setdesk|setdesc|setdeskripsi)/.test(m.command)) import('./feature/g-setdesc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			// if (/(setppgc|setppgrup|setppgroup)/i.test(m.command)) import('./feature/g-setppgc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendErr(e));
-			//Owner
-			if (/(block|blck)/.test(m.command)) import('./feature/o-block.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/join/.test(m.command)) import('./feature/o-join.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/(unblock|unblck)/.test(m.command)) import('./feature/o-unblock.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/ban/.test(m.command)) import('./feature/o-ban.js').then(v => v.handle(m, q, conn)).catch(e=>sendErr(e));
-			if (/[$]/.test(m.text)) import('./feature/o-exec.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
-			if (/(>|>>)/.test(m.text)) import('./feature/o-exec.js').then(v => v.handle(m, conn)).catch(e=>sendErr(e));
+		import('./feature/__handle-all.js').then(x=> x.all(m, up, q, d, conn, grup)).catch(e=> sendE(e))
+		if (cmd('menu') || cmd('help')) import('./feature/b-menu.js').then(v => v.handle(m, conn)).catch(e=>sendE(e));
+		if (cmd('owner') || cmd('creator')) import('./feature/b-creator.js').then(v => v.handle(m, q, conn)).catch(e=>sendE(e));
+		if (cmd('groupbot') || cmd('grupbot')) import('./feature/b-gcbot.js').then(v => v.handle(m, q, conn)).catch(e=>sendE(e));
+		if (cmd('script') || cmd('sc')) import('./feature/b-script.js').then(v => v.handle(m, q, conn, bb)).catch(e=>sendE(e));
+		if (cmd('listblock')) import('./feature/b-listblock.js').then(v => v.handle(m, q, conn)).catch(e=>sendE(e));
+		if (cmd('delete') || cmd('del')) import('./feature/b-delete.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		//Group
+		if (cmd('hidetag') || cmd('ht')) import('./feature/g-hidetag.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('info') || cmd('grup')) import('./feature/g-info.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('kick')) import('./feature/g-kick.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('add')) import('./feature/g-add.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('promote')) import('./feature/g-pm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('demote')) import('./feature/g-dm.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('tagall')) import('./feature/g-tagall.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('setname') || cmd('setgcname') || cmd('setnama')) import('./feature/g-setname.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		if (cmd('setdesc') || cmd('setdesk')) import('./feature/g-setdesc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		// if (/(setppgc|setppgrup|setppgroup)/i.test(m.command)) import('./feature/g-setppgc.js').then(v => v.handle(m, q, conn, grup)).catch(e=>sendE(e));
+		//Owner
+		if (cmd('block')) import('./feature/o-block.js').then(v => v.handle(m, q, conn)).catch(e=>sendE(e));
+		if (cmd('join')) import('./feature/o-join.js').then(v => v.handle(m, q, conn)).catch(e=>sendE(e));
+		if (cmd('listgroup') || cmd('listgc') || cmd('listgrup')) import('./feature/o-listgc.js').then(v => v.handle(m, q, conn, findAdmin)).catch(e=>sendE(e));
+		if (m.text.startsWith('='))
+			import('./feature/o-exec.js').then(v => v.handle(m, conn)).catch(e=>sendE(e));
+		if (m.text.startsWith('//'))
+			import('./feature/o-eval_.js').then(v => v.handle(m, conn, q, d, grup, findAdmin, bb)).catch(e=>sendE(e));
+		if (m.text.startsWith('--'))
+			import('./feature/o-eval.js').then(v => v.handle(m, conn, q, d, grup, findAdmin, bb)).catch(e=>sendE(e));
+		// COMMAND REACTION MESSAGE
+		if (m.rtext == '❤️' && m.rfromMe) 
+			import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '😡') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '😎') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '😒') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '🙃') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '🤣') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
+		// if (m.rtext == '😌') 
+		// 	import('./feature/r-test.js').then(v=> v.handle(m, q, conn)).catch(e=>sendE(e));
 	} catch (e) {
 		console.log(e);
 	}

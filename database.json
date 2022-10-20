@@ -1,34 +1,177 @@
 {
   "user": {
     "13068016884@s.whatsapp.net": {
-      "lastused": 1665997058257,
+      "lastused": 1666266877944,
       "ban": false
     },
-    "6281779992543@s.whatsapp.net": {
-      "lastused": 1665990879366,
+    "6282142917550@s.whatsapp.net": {
+      "lastused": 1666267168872,
+      "ban": false
+    },
+    "6288990007937@s.whatsapp.net": {
+      "lastused": 1666267168818,
+      "ban": false
+    },
+    "6289631008798@s.whatsapp.net": {
+      "lastused": 1666267117721,
+      "ban": false
+    },
+    "6285727231608@s.whatsapp.net": {
+      "lastused": 1666032193268,
+      "ban": false
+    },
+    "6285728625940@s.whatsapp.net": {
+      "lastused": 1666250235011,
+      "ban": false
+    },
+    "6285381039923@s.whatsapp.net": {
+      "lastused": 1666253409519,
+      "ban": false
+    },
+    "6285888204823@s.whatsapp.net": {
+      "lastused": 1666040627157,
+      "ban": false
+    },
+    "6285848453523@s.whatsapp.net": {
+      "lastused": 1666267170177,
+      "ban": false
+    },
+    "120363041493745571@g.us": {
+      "lastused": 1666162367336,
+      "ban": false
+    },
+    "120363028169856287@g.us": {
+      "lastused": 1666076866416,
+      "ban": false
+    },
+    "6282395693998@s.whatsapp.net": {
+      "lastused": 1666078111613,
+      "ban": false
+    },
+    "917020093452@s.whatsapp.net": {
+      "lastused": 1666186788836,
+      "ban": false
+    },
+    "6289523655180@s.whatsapp.net": {
+      "lastused": 1666089113343,
+      "ban": false
+    },
+    "6287839067186@s.whatsapp.net": {
+      "lastused": 1666266812182,
+      "ban": false
+    },
+    "6287735362176@s.whatsapp.net": {
+      "lastused": 1666109542562,
+      "ban": false
+    },
+    "628881663146@s.whatsapp.net": {
+      "lastused": 1666219467111,
+      "ban": false
+    },
+    "6282141404209@s.whatsapp.net": {
+      "lastused": 1666266949403,
+      "ban": false
+    },
+    "6285654077688@s.whatsapp.net": {
+      "lastused": 1666186810336,
+      "ban": false
+    },
+    "6288289285557@s.whatsapp.net": {
+      "lastused": 1666156012395,
+      "ban": false
+    },
+    "6287863856639@s.whatsapp.net": {
+      "lastused": 1666156004486,
+      "ban": false
+    },
+    "6289646664914@s.whatsapp.net": {
+      "lastused": 1666186795423,
+      "ban": false
+    },
+    "6285162796664@s.whatsapp.net": {
+      "lastused": 1666190947040,
+      "ban": false
+    },
+    "62895323231914@s.whatsapp.net": {
+      "lastused": 1666249133478,
+      "ban": false
+    },
+    "6285241426014@s.whatsapp.net": {
+      "lastused": 1666240611037,
+      "ban": false
+    },
+    "628381023602@s.whatsapp.net": {
+      "lastused": 1666265857831,
+      "ban": false
+    },
+    "628985586723@s.whatsapp.net": {
+      "lastused": 1666249083214,
+      "ban": false
+    },
+    "6281517707088@s.whatsapp.net": {
+      "lastused": 1666245428277,
+      "ban": false
+    },
+    "6287734910547@s.whatsapp.net": {
+      "lastused": 1666265675094,
+      "ban": false
+    },
+    "628970454454@s.whatsapp.net": {
+      "lastused": 1666265788574,
       "ban": false
     }
   },
   "chat": {
-    "120363041493745571@g.us": {
-      "join": 1665997058257,
+    "120363044348536706@g.us": {
+      "join": 1666011087673,
       "add": 1324,
       "detect": true,
       "link": false,
       "antidel": false,
       "antilink": false,
       "antivn": false,
-      "antistik": false
+      "antistik": false,
+      "antibot": false,
+      "cht": 0
     },
     "120363028169856287@g.us": {
-      "join": 1665991104959,
+      "join": 1666267170177,
       "add": 1324,
       "detect": true,
       "link": false,
       "antidel": false,
       "antilink": false,
       "antivn": false,
-      "antistik": false
+      "antistik": false,
+      "antibot": true,
+      "cht": 0
+    },
+    "120363041493745571@g.us": {
+      "join": 1666266006842,
+      "add": 1324,
+      "detect": true,
+      "link": true,
+      "antidel": false,
+      "antilink": false,
+      "antivn": false,
+      "antistik": false,
+      "antibot": false,
+      "antiluar": false,
+      "ban": false,
+      "cht": 0
+    },
+    "120363044734621673@g.us": {
+      "join": 1666245408135,
+      "add": 1324,
+      "cht": 0,
+      "ban": false,
+      "detect": true,
+      "link": false,
+      "antidel": false,
+      "antilink": false,
+      "antivn": false,
+      "antistik": false,
+      "antibot": false
     }
   },
   "set": {

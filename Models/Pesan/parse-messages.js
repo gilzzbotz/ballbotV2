@@ -30,11 +30,22 @@ export const parser = (serve, m, s) => {
 			m.isMod = q.moderator.map(v=> v + q.idwa).includes(m.sender)
 			if (m.isGc) m.participant = serve.createJid(m.key.participant) || ''
 		}
-		if (m.message) { 
+		if (m.message) {
 			m.mtype = getContentType(m.message) /*Dapatkan dan meng Inisialisasi content ambil dari baileys*/
 			m.msg = (m.mtype == 'viewOnceMessage' ? m.message[m.mtype].message[getContentType(m.message[m.mtype].message)] : m.message[m.mtype])
 			let quntul = m.quoted = m.msg.contextInfo ? m.msg.contextInfo.quotedMessage : null
 			m.mentionedJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
+			m.react = m.mtype == 'reactionMessage' ? m.message[m.mtype] : null
+			if (m.react) {
+				m.rkey = m.message[m.mtype].key
+				m.rchat = m.message[m.mtype].key.remoteJid
+				m.rfromMe = m.message[m.mtype].key.fromMe
+				m.rId = m.message[m.mtype].key.id
+				m.rtext = m.message[m.mtype].text
+				m.rtime = m.message[m.mtype].senderTimestampMs
+				m.rtarget = m.isGc ? m.message[m.mtype].key.participant : ''
+			}
+			if (m.msg.url) m.download = () => dlMessage(m.msg)
 			if (m.quoted) {
 				let type = Object.keys(m.quoted)[0]
 				m.quoted = m.quoted[type]
@@ -66,14 +77,15 @@ export const parser = (serve, m, s) => {
 				m.quoted.delete = () => serve.sendMessage(m.quoted.chat, { delete: vM.key })
 			}
 			m.text = m.msg.text || m.msg.caption || m.message.conversation || m.msg.contentText || m.msg.selectedDisplayText || m.msg.title || ''
-	   	let cmdd = (m.mtype === 'conversation') ? m.message.conversation: (m.mtype == 'imageMessage') ? m.message.imageMessage.caption: (m.mtype == 'videoMessage') ? m.message.videoMessage.caption: (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
+	   	let cmdd = (m.mtype === 'conversation') ? m.message.conversation: (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption: (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
 			m.preff = /^[/\.!#]/.test(cmdd) ? cmdd.match(/^[/\.!#]/) : '/'
 			m.cmd = (m.mtype === 'conversation' && m.message.conversation.startsWith(m.preff)) ? m.message.conversation : (m.mtype == 'imageMessage' && m.message.imageMessage.caption.startsWith(m.preff)) ? m.message.imageMessage.caption : (m.mtype == 'videoMessage' && m.message.videoMessage.caption.startsWith(m.preff)) ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage' && m.message.extendedTextMessage.text.startsWith(m.preff)) ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage' && m.message.buttonsResponseMessage.selectedButtonId) ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId: (m.mtype == 'templateButtonReplyMessage' && m.message.templateButtonReplyMessage.selectedId) ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text): ''
 			m.args = m.cmd.trim().split(/ +/).slice(1)
 			m.query = m.args.join(" ")
 			m.command = m.cmd.slice(1).trim().split(/ +/).shift().toLowerCase()
+			m.rcmd = m.rtext && m.rfromMe
+			m.rcmdd = m.rtext && !m.rfromMe
 		}
-		// if (m.msg.url) m.download = () => dlMessage(m.msg)
 	   return m;
 	} catch (e) {
 		console.log(e);

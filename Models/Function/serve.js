@@ -13,8 +13,8 @@ export const connect = async(serve) => {
 		const ephe = { ephemeralExpiration: 8640000, forwardingScore: 99999, isForwarded: true }
 	   /**
 	    * getBuffer hehe
-	    * @param {*} PATH 
-	    * @param {*} saveToFile
+	    * @param {String} PATH 
+	    * @param {Boolean} saveToFile
 	    * @returns
 	    */
 	     serve.getfile = async (PATH, saveToFile = false) => {
@@ -33,15 +33,15 @@ export const connect = async(serve) => {
 	      }
        
 		/* 
-		* Create jid at id
-		* @param {*} chatId
-		* @returns chatId
+		* Regex mention match
+		* @param {String} query
+		* @returns
 		* By Bolaxd
 		*/
 		serve.ments = async (query) => [...query.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + q.idwa)
 		/* 
 		* Create jid at id
-		* @param {*} chatId
+		* @param {String} chatId
 		* @returns chatId
 		* By Bolaxd
 		*/
@@ -54,51 +54,51 @@ export const connect = async(serve) => {
 		}
 		/* 
 		* Send Kontak maybe
-		* @param {*} chatId
-		* @param {*} teks
-		* @param {*} arr
-		* @param {*} quoted
-		* #param {*} opts
+		* @param {String} chatId
+		* @param {String} teks
+		* @param {Array} arr
+		* @param {String} quoted
+		* #param {Object} opts
 		* @returns
 		* By Bolaxd
 		*/
 		serve.sendkon = async (chatId, teks, arr = [...[0, 1, 2]], quoted = '', opts = {}) => {
 			var push = []
 			for (let i of arr) push.push({displayName: '', vcard: 'BEGIN:VCARD\n'+'VERSION:3.0\n'+'FN:'+i[0]+'\n'+'ORG:'+i[2]+';\n'+'TEL;type=CELL;type=VOICE;waid='+i[1]+':'+i[1]+'\n'+'END:VCARD' })
-			serve.sendMessage(chatId, { contacts: { displayName: teks, contacts: push }, quoted, ...opts}, ephe)
+			serve.sendMessage(chatId, { contacts: { displayName: teks, contacts: push }, ...opts}, {quoted},ephe)
 		}
 		/* 
 		* Send Fake Video
-		* @param {*} chatId
-		* @param {*} text
+		* @param {String} chatId
+		* @param {String} text
 		* @returns
 		* By Bolaxd
 		*/
 		serve.sendFvid = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + q.idwa),...opts}, ephe)
 		/* 
 		* Send Button teks
-		* @param {*} chatId
-		* @param {*} teks
-		* @param {*} foot
-		* @param {*} but
-		* @param {*} quoted
-		* @param {*} opts
+		* @param {String} chatId
+		* @param {String} teks
+		* @param {String} foot
+		* @param {Array} but
+		* @param {String} quoted
+		* @param {Object} opts
 		* @returns
 		* By Bolaxd
 		*/
 		serve.sendlist = async (chatId, teks, foot, but = [...[dis = '', id = '', des = '' ]], quoted = '') => {
 			let coi = []
 			for (let u of but) coi.push({ title: u[0], rowId: u[1], description: u[2] })
-			serve.sendMessage(chatId, { text: teks, footer: foot, title: null, buttonText: "click here", sections: [{title: 'Ballbot', rows: coi }]}, { quoted })
+			serve.sendMessage(chatId, { text: teks, footer: foot, title: null, buttonText: 'Click Here', sections: [{title: 'Ballbot', rows: coi }]}, { quoted })
 		}
 		/* 
 		* Send Button teks
 		* @param chatId
-		* @param {*} text
-		* @param {*} footer
-		* @param {*} but
-		* @param {*} men
-		* @param {*} opts
+		* @param {String} text
+		* @param {String} footer
+		* @param {Array} but
+		* @param {String} men
+		* @param {Object} opts
 		* @returns
 		* By Bolaxd
 		*/
@@ -109,31 +109,42 @@ export const connect = async(serve) => {
 		}
 		/* 
 		* Send Teks biasaa
-		* @param {*} chatId
-		* @param {*} text
-		* @param {*} quoted
-		* @param {*} opts
+		* @param {String} chatId
+		* @param {String} text
+		* @param {String} quoted
+		* @param {Object} opts
 		* @returns
 		* By Bolaxd
 		*/
 		serve.sendteks = async (chatId, text, quoted = '', opts = {}) => serve.sendMessage(chatId, { text, ephe, ...opts}, {quoted})
 		/* 
 		* Send Tag teks (with Fake video)
-		* @param {*} chatId
-		* @param {*} text
-		* @param {*} men
-		* @param {*} opts
+		* @param {String} chatId
+		* @param {String} text
+		* @param {String} men
+		* @param {Object} opts
 		* @returns
 		* By Bolaxd
 		*/
 		serve.sendTag = async (chatId, text, men, opts = {}) => serve.sendMessage(chatId, {video: { url: q.video }, fileLength: (await Math.floor(Math.random()*10360047029)), caption: text, mentions: [men], ...opts}, ephe)
 		/* 
 		* Send Fake Dokument
-		* @param chatId, text
-		* @returns text, document, options
+		* @param {String} chatId
+		* @param {String} text
+		* @returns
 		* By Bolaxd
 		*/
 		serve.sendFImg = async (chatId, text, opts = {}) => serve.sendMessage(chatId, {document: { url: q.video }, fileLength:(await Math.floor(Math.random()*10360047029)), fileName: 'Ballbot-V2', mimetype: 'application/bin', pageCount: 37383838383838383, caption: text}, ephe)
+		
+		/* 
+		* Send Fake Image
+		* @param {String} chatId
+		* @param {String} text
+		* @param {Buffer} image
+		* @returns
+		* By Bolaxd
+		*/
+		serve.sendimg = async (chatId, img, teks = '', quoted = '', opts = {}) => serve.sendMessage(chatId, {image: { url: img }, fileLength:(await Math.floor(Math.random()*10360047029)), caption: teks}, {quoted}, ephe, opts)
 		
 		// DB
 		serve.db = new Low(new JSONFile(q.namedb+'.json'));

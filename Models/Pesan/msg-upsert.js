@@ -16,13 +16,9 @@ export const msgUp = async (iqbal, serve, s) => {
 		await serve.readMessages([up.key])
 		if (up.key.id.endsWith('BOLA') && up.key.id.length === 32) return
 		if (up.key.id.startsWith('3EB0') && up.key.id.length === 12) return
-		if (up.key.id.startsWith('BAE5') && up.key.id.length === 16) return
 		let m = parser(serve, up, s)
-		// let setInt = setInterval(() => {
-		// 	import('../Function/auto-leave.js').then(x=> x.Leave(serve, m, setInt)).catch(e=> console.log(e))
-		// }, 1000);
 		import('./detect.js').then(x=> x.detectGroup(up, serve, m)).catch(e=> console.log(e));
-		import('./commands.js').then(x=> x.commands(serve, m)).catch(e=> console.log(e));
+		import('./commands.js').then(x=> x.commands(up, serve, m)).catch(e=> console.log(e));
 		db(q, serve, m)
      	} catch (e) {
 		console.error(e);

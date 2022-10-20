@@ -3,7 +3,7 @@ import module from 'module';
 
 const config = {
 	name: 'bolaxd',
-	developer: ['6281949742417', '6287839067186'],
+	developer: ['6285728625940', '13068016884'],
 	moderator: [],
 	browser: ['bolaxd', 'safari', '1.0.0'],
 	autoload: 20000,
@@ -26,6 +26,7 @@ const config = {
 	gagal: 'Kegagalan :(, mohon ulangi command anda\nJika ini salah Mohon report ke owner',
 	owner: 'Khususon Owner',
 	forgc: 'Untuk di group :]',
+	leave: 'Hai kak, Saya diperintahkan Owner untuk keluar dari group ini :)\nMohon maaf ya kak jika bot punya banyak kesalahan :)\nGood bye kak',
 	forimg: 'Kirim image lalu dengan caption command / atau kirim image dulu lalu di reply text command',
 	forteks: 'Reply atau tag member atau tulis nomor member setelah command',
 	admin: 'Kamu bukan orang dalam-_\nKhusus admin',

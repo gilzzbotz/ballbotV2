@@ -26,7 +26,7 @@ const mulai = async() => {
 	   });
 	   store.bind(serve.ev);
 	   connect(serve);
-	   // DATABASE
+		// DATABASE
 		if (serve.db) setInterval(async () => {
 			if (serve.db.data) await serve.db.write();
 		}, q.autoload);

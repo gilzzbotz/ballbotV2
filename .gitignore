@@ -11,8 +11,5 @@
 hs_err_pid*
 node_modules
 package-lock.json
-tmp/*.mp4
-tmp/*.jpg
-tmp/*.webp
-tmp/*.mp3
-tmp/*.png
+yarn.lock.json
+Auth/*.json
