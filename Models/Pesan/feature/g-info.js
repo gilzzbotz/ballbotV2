@@ -156,7 +156,6 @@ export const handle = async (m, q, conn, grup) => {
 			 teks += `Anti Sticker: *${conn.db.data.chat[m.chat].antistik ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti Bot: *${conn.db.data.chat[m.chat].antibot ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti Nomor Luar: *${conn.db.data.chat[m.chat].antiluar ? 'hidup' : 'mati'}*\n`
-			 teks += `Ban bot: *${global.ban.map(u=>u).includes(m.chat) ? 'hidup' : 'mati'}*\n`
 		list.push(['Link Group ini', '.info link', 'Link group whatsapp ini'])
 		if (isAdmin) {
 			list.push(['Reset link grup', '.info revoke', 'Reset atau ganti link group jni dengan yang baru'])
@@ -178,9 +177,7 @@ export const handle = async (m, q, conn, grup) => {
 			else list.push(['Hidupkan anti bot', '.info boton', 'Tolak semua bot yang masuk ke group selain bot ini'])
 			if (conn.db.data.chat[m.chat].antiluar) list.push(['Matikan anti Nomor luar', '.info luaroff', 'Bot akan mematikan penolakan user Nomor luar yang join'])
 			else list.push(['Hidupkan anti Nomor Luar', '.info luaron', 'Bot akan menolak semua user Ber Nomor luar'])
-			if (conn.db.data.chat[m.chat].ban) list.push(['Unban Bot', '.info banoff', 'Bot akan merespons di group ini'])
-			else list.push(['Ban bot', '.info banon', 'Bot akan tidak merespons Di group ini kecuali admin'])
-		}
+			}
 		conn.sendlist(m.chat, teks, q.name, list, m)
 	}
 }

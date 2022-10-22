@@ -7,5 +7,5 @@ export const handle = (m, q, conn, bb) => {
 	let buttons = [
 		['Oke min', 'hehe']
 		]
-	conn.sendbut(m.chat, teks, foot, buttons, m)
+	conn.butteks(m.chat, teks, foot, buttons, m)
 }

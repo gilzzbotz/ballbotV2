@@ -1,19 +1,19 @@
 {
   "user": {
     "13068016884@s.whatsapp.net": {
-      "lastused": 1666266877944,
+      "lastused": 1666434564611,
       "ban": false
     },
     "6282142917550@s.whatsapp.net": {
-      "lastused": 1666267168872,
+      "lastused": 1666435825787,
       "ban": false
     },
     "6288990007937@s.whatsapp.net": {
-      "lastused": 1666267168818,
+      "lastused": 1666277879355,
       "ban": false
     },
     "6289631008798@s.whatsapp.net": {
-      "lastused": 1666267117721,
+      "lastused": 1666291959649,
       "ban": false
     },
     "6285727231608@s.whatsapp.net": {
@@ -21,11 +21,11 @@
       "ban": false
     },
     "6285728625940@s.whatsapp.net": {
-      "lastused": 1666250235011,
+      "lastused": 1666434098299,
       "ban": false
     },
     "6285381039923@s.whatsapp.net": {
-      "lastused": 1666253409519,
+      "lastused": 1666279524071,
       "ban": false
     },
     "6285888204823@s.whatsapp.net": {
@@ -33,7 +33,7 @@
       "ban": false
     },
     "6285848453523@s.whatsapp.net": {
-      "lastused": 1666267170177,
+      "lastused": 1666291302176,
       "ban": false
     },
     "120363041493745571@g.us": {
@@ -57,7 +57,7 @@
       "ban": false
     },
     "6287839067186@s.whatsapp.net": {
-      "lastused": 1666266812182,
+      "lastused": 1666291288857,
       "ban": false
     },
     "6287735362176@s.whatsapp.net": {
@@ -69,7 +69,7 @@
       "ban": false
     },
     "6282141404209@s.whatsapp.net": {
-      "lastused": 1666266949403,
+      "lastused": 1666291292865,
       "ban": false
     },
     "6285654077688@s.whatsapp.net": {
@@ -85,7 +85,7 @@
       "ban": false
     },
     "6289646664914@s.whatsapp.net": {
-      "lastused": 1666186795423,
+      "lastused": 1666278030041,
       "ban": false
     },
     "6285162796664@s.whatsapp.net": {
@@ -113,17 +113,25 @@
       "ban": false
     },
     "6287734910547@s.whatsapp.net": {
-      "lastused": 1666265675094,
+      "lastused": 1666288583182,
       "ban": false
     },
     "628970454454@s.whatsapp.net": {
       "lastused": 1666265788574,
       "ban": false
+    },
+    "6285651409344@s.whatsapp.net": {
+      "lastused": 1666278366795,
+      "ban": false
+    },
+    "6285602806360@s.whatsapp.net": {
+      "lastused": 1666288435941,
+      "ban": false
     }
   },
   "chat": {
     "120363044348536706@g.us": {
-      "join": 1666011087673,
+      "join": 1666384564724,
       "add": 1324,
       "detect": true,
       "link": false,
@@ -135,7 +143,7 @@
       "cht": 0
     },
     "120363028169856287@g.us": {
-      "join": 1666267170177,
+      "join": 1666385985228,
       "add": 1324,
       "detect": true,
       "link": false,
@@ -147,7 +155,7 @@
       "cht": 0
     },
     "120363041493745571@g.us": {
-      "join": 1666266006842,
+      "join": 1666434566454,
       "add": 1324,
       "detect": true,
       "link": true,
@@ -155,13 +163,13 @@
       "antilink": false,
       "antivn": false,
       "antistik": false,
-      "antibot": false,
+      "antibot": true,
       "antiluar": false,
       "ban": false,
       "cht": 0
     },
     "120363044734621673@g.us": {
-      "join": 1666245408135,
+      "join": 1666384571285,
       "add": 1324,
       "cht": 0,
       "ban": false,
@@ -178,7 +186,8 @@
     "6282142917550@s.whatsapp.net": {
       "update": [],
       "blgc": [],
-      "public": true
+      "public": false,
+      "call": true
     }
   }
 }

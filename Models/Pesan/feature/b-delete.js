@@ -1,6 +1,8 @@
 export const handle = async (m, q, conn, grup) => {
 	let { isBotAdmin } = grup
-	if (m.fromMe) {
+	if (m.react) return conn.sendMessage(m.chat, {delete: m.rkey})
+	if (!m.quoted) return conn.sendteks(m.chat, 'Reply pesan yg ingin kau lenyapkan dari bumi', m)
+	if (m.quoted.isBot) {
 		conn.sendMessage(m.chat, {delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
 	} else {
 		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)

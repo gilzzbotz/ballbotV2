@@ -83,8 +83,6 @@ export const parser = (serve, m, s) => {
 			m.args = m.cmd.trim().split(/ +/).slice(1)
 			m.query = m.args.join(" ")
 			m.command = m.cmd.slice(1).trim().split(/ +/).shift().toLowerCase()
-			m.rcmd = m.rtext && m.rfromMe
-			m.rcmdd = m.rtext && !m.rfromMe
 		}
 	   return m;
 	} catch (e) {

@@ -1,9 +1,9 @@
 export const handle = async (m, q, conn, grup) => {
 	let { isAdmin, isBotAdmin, members } = grup
-	if (!m.isGc) return conn.sendTag(m.chat, q.forgc, '');
-	if (!isAdmin) return conn.sendTag(m.chat, q.admin, m.sender);
+	if (!m.isGc) return conn.sendteks(m.chat, q.forgc, m);
+	if (!isAdmin) return conn.sendteks(m.chat, q.admin, m);
 	let uvuv = members.map(v => conn.createJid(v.id))
 	let pesan = `Pesan: ${m.query ? m.query : 'Tidak ada'}\n`
 		 uvuv.map(v=> pesan += `@${v.split('@')[0]}\n`)
-	conn.sendMessage(m.chat, {text: pesan, mentions: uvuv}, {quoted: m})
+	conn.sendteks(m.chat, pesan, m, {mentions: uvuv})
 }

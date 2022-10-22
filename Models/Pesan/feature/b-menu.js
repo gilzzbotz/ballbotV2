@@ -1,27 +1,32 @@
-export const handle = (m, conn) => {
+export const handle = (m, conn, q, d) => {
 	let bot = [
 			['menu', ''],
 			['owner', ''],
 			['groupbot', ''],
-			['script/sc', ''],
-			['delete/del', ''],
+			['script', ''],
+			['delete', ''],
+			['listblock', ''],
 		]
 	let grup = [
 			['info', ''],
-			['hidetag/ht', ''],
-			['tagall/tgl', ''],
+			['grup', ''],
+			['hidetag', ''],
+			['tagall', ''],
 			['setname', ''],
 			['setdesc', ''],
-			['kick/kik', ''],
+			['setppgc', ''],
+			['kick', ''],
 			['add', ''],
-			['demote/dm', ''],
-			['promote/pm', ''],
+			['demote', ''],
+			['promote', ''],
 		]
 	let owner = [
-			['ban', ''],
-			['listgc/listgrup', ''],
+			['setppbot', ''],
+			['setnamebot', ''],
+			['setstatus', ''],
+			['listgc', ''],
 			['block', ''],
-			['unblock', ''],
+			['modes', ''],
 			['join', ''],
 		]
 	let react = [
@@ -29,8 +34,6 @@ export const handle = (m, conn) => {
 			['🤪', '=> .add'],
 			['😎', '=> .promote'],
 			['😒', '=> .demote'],
-			['🙃', '=> .tagall'],
-			['🤣', '=> .hidetag'],
 			['😌', '=> .delete'],
 		]
 	let teks = `[				Menu				]\n`
@@ -40,8 +43,8 @@ export const handle = (m, conn) => {
 		for (let o of grup) teks += `*${m.preff + o[0]}* ${o[1]}\n`
 		teks += '\n*-- OWNER --*\n'
 		for (let p of owner) teks += `*${m.preff + p[0]}* ${p[1]}\n`
-		teks += '*=*\n*//*\n*--*\n'
+		teks += '*%*\n*~>*\n*>>*\n'
 		teks += '\n*-- COMMAND REACTION --*\n'
 		for (let b of react) teks += `${b[0]} *${b[1]}*\n`
-	conn.sendteks(m.chat, teks, m)
+	conn.sendteks(m.chat, teks, d.f1('Simple Menu ballbot v2', ''), d.f2('Github:me', q.thumb2, q.home))
 }

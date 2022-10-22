@@ -33,9 +33,10 @@
   "homepage": "https://github.com/bolaxd/ballbot-v2#readme",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
-    "baileys": "^5.0.8",
+    "baileys": "5.0.8",
     "file-type": "^18.0.0",
     "fs": "^0.0.1-security",
+    "jimp": "^0.16.2",
     "jsdom": "^20.0.1",
     "lodash": "^4.17.21",
     "node-fetch": "^3.2.10",

@@ -1,3 +1,4 @@
+process.on('uncaughtException', console.error);
 const isNum = x => typeof x == 'number' && isNaN(x);
 
 export const db = async (q, serve, smsg) => {
@@ -50,10 +51,12 @@ export const db = async (q, serve, smsg) => {
 			if (!('update') in bot) serve.db.data.set[bb].update = []
 			if (!('blgc') in bot) serve.db.data.set[bb].blgc = []
 			if (!('public') in bot) serve.db.data.set[bb].public = true
+			if (!('call') in bot) serve.db.data.set[bb].call = true
 		} else serve.db.data.set[bb] = {
 			update: [],
 			blgc: [],
-			public: true
+			public: true,
+			call: true
 		}
 	} catch (e) {
 		console.log(e)

@@ -1,3 +1,4 @@
+process.on('uncaughtException', console.error);
 const { default: HOHOHOHO, useMultiFileAuthState, makeInMemoryStore } = (await import('baileys')).default;
 import { msgUp } from './Models/Pesan/msg-upsert.js';
 import { connect } from './Models/Function/serve.js';

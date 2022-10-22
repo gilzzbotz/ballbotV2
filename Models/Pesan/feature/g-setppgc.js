@@ -1,23 +1,15 @@
 
-// 'export const handle = async (m, q, conn, grup) => {
-// 	let { isAdmin, isBotAdmin, members } = grup
-// 	if (!m.isGc) return conn.sendTag(m.chat, q.forgc, '');
-// 	if (!isAdmin) return conn.sendTag(m.chat, q.admin, m.sender);
-// 	let url = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi
-// 	let quoted = m.quoted ? m.quoted : m
-// 	let mime = (quoted.msg || quoted).mimetype || quoted.mediaType || ''
-// 	if (/image/.test(mime)) {
-// 		let qunt = m.quoted ? m.quoted : m
-// 		let pp = await tele(await qunt.download())
-	
-// 		await conn.updateProfilePicture(m.chat, { url: pp })
-// 		.then(i=>conn.sendMessage(m.chat, {text: q.sukses }, {quoted: m}))
-// 		.catch(e=> {conn.sendMessage(m.chat, {text: q.gagal }, {quoted: m})
-// 		console.log(e);
-// 		})
-// 	} else if (m.args[0] && m.args[0].match(url)) {
-// 		await conn.updateProfilePicture(m.chat, { url: args[0] })
-// 		.then(i=>conn.sendMessage(m.chat, {text: q.sukses }, {quoted: m}))
-// 		.catch(e=> conn.sendMessage(m.chat, {text: q.gagal }, {quoted: m}))
-// 	} else conn.sendTag('m.chat, q.forimg, m.sender);
-//}
+export const handle = async (m, q, conn, grup) => {
+	let { isAdmin, isBotAdmin, members } = grup
+	if (!m.isGc) return conn.sendteks(m.chat, q.forgc, m);
+	if (!isAdmin) return conn.sendteks(m.chat, q.admin, m);
+	let quoted = m.quoted ? m.quoted : m
+	let mime = (quoted.msg || quoted).mimetype || quoted.mediaType || ''
+	if (/image/.test(mime)) {
+		let qunt = m.quoted ? m.quoted : m
+		let pp = await qunt.download()
+		await conn.createprofile(m.chat, pp)
+		.then(i=>conn.sendteks(m.chat, q.sukses, m))
+		.catch(e=> conn.sendMessage(m.chat, q.gagal, m))
+	} else conn.sendteks(m.chat, q.forimg, m);
+}

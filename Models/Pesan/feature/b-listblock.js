@@ -6,5 +6,5 @@ export const handle = async (m, q, conn) => {
 	let but = [
 			['Minta unblock', '.owner'],
 		]
-	conn.sendbut(m.chat, teks, q.name, but, m)
+	conn.butteks(m.chat, teks, q.name, but, m)
 }
