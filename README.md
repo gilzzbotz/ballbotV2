@@ -88,5 +88,5 @@ $ npm start
 ## Penulis
 [![bolaxd](https://github.com/bolaxd.png?size=100)](https://github.com/bolaxd)
 ## Big Thanks To
-[![Amiruldev20](Amiruldev20)](https://github.com/Amiruldev20)
+[![amiruldev20](https://github.com/amiruldev20.png?size=100)](https://github.com/amiruldev20)
 [![Fokusdotid](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)
