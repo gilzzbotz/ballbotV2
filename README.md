@@ -89,6 +89,9 @@ $ npm start
 [![bolaxd](https://github.com/bolaxd.png?size=100)](https://github.com/bolaxd)
 ## Big Thanks To
 ---------
-[![adiwajshing](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajshing) | [![amiruldev20](https://github.com/amiruldev20.png?size=100)](https://github.com/amiruldev20) | [![BochilTeam](https://github.com/BochilTeam.png?size=100)](https://github.com/BochilTeam) | [![Fokus dot id](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)
+[![adiwajshing](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajshing) 
+[![amiruldev20](https://github.com/amiruldev20.png?size=100)](https://github.com/amiruldev20)
+[![BochilTeam](https://github.com/BochilTeam.png?size=100)](https://github.com/BochilTeam)
+[![Fokus dot id](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)
 ---------
 ## ALL Countributor
