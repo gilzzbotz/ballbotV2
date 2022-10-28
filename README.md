@@ -91,7 +91,7 @@ $ npm start
 ---------
 
 [![adiwajshing](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajshing)
-[![amiruldev20](https://github.com/amiruldev.png?size=100)](https://github.com/amiruldev20)
+[![amiruldev20](https://github.com/amiruldev20.png?size=100)](https://github.com/amiruldev20)
 [![BochilTeam](https://github.com/BochilTeam.png?size=100)](https://github.com/BochilTeam)
 [![Fokus dot id](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)
 ----|----
