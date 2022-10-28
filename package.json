@@ -1,6 +1,6 @@
 {
   "name": "ballbotv2",
-  "version": "0.28.9",
+  "version": "0.28.10",
   "description": "Ballbot adalah bot whatsapp yang dibuat dengan type module dan di update secara berkala",
   "main": "main.js",
   "type": "module",
