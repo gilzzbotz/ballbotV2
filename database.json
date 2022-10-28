@@ -1,176 +1,182 @@
 {
   "user": {
-    "13068016884@s.whatsapp.net": {
-      "lastused": 1666434564611,
-      "ban": false
-    },
-    "6282142917550@s.whatsapp.net": {
-      "lastused": 1666435825787,
-      "ban": false
-    },
-    "6288990007937@s.whatsapp.net": {
-      "lastused": 1666277879355,
-      "ban": false
-    },
     "6289631008798@s.whatsapp.net": {
-      "lastused": 1666291959649,
-      "ban": false
+      "lastused": 1666886147610,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6285727231608@s.whatsapp.net": {
-      "lastused": 1666032193268,
-      "ban": false
-    },
-    "6285728625940@s.whatsapp.net": {
-      "lastused": 1666434098299,
-      "ban": false
-    },
-    "6285381039923@s.whatsapp.net": {
-      "lastused": 1666279524071,
-      "ban": false
-    },
-    "6285888204823@s.whatsapp.net": {
-      "lastused": 1666040627157,
-      "ban": false
-    },
-    "6285848453523@s.whatsapp.net": {
-      "lastused": 1666291302176,
-      "ban": false
-    },
-    "120363041493745571@g.us": {
-      "lastused": 1666162367336,
-      "ban": false
-    },
-    "120363028169856287@g.us": {
-      "lastused": 1666076866416,
-      "ban": false
-    },
-    "6282395693998@s.whatsapp.net": {
-      "lastused": 1666078111613,
-      "ban": false
-    },
-    "917020093452@s.whatsapp.net": {
-      "lastused": 1666186788836,
-      "ban": false
-    },
-    "6289523655180@s.whatsapp.net": {
-      "lastused": 1666089113343,
-      "ban": false
-    },
-    "6287839067186@s.whatsapp.net": {
-      "lastused": 1666291288857,
-      "ban": false
-    },
-    "6287735362176@s.whatsapp.net": {
-      "lastused": 1666109542562,
-      "ban": false
-    },
-    "628881663146@s.whatsapp.net": {
-      "lastused": 1666219467111,
-      "ban": false
+    "13068016884@s.whatsapp.net": {
+      "lastused": 1666944673500,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
     "6282141404209@s.whatsapp.net": {
-      "lastused": 1666291292865,
-      "ban": false
+      "lastused": 1666699273945,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6285654077688@s.whatsapp.net": {
-      "lastused": 1666186810336,
-      "ban": false
+    "6285848453523@s.whatsapp.net": {
+      "lastused": 1666850285988,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6288289285557@s.whatsapp.net": {
-      "lastused": 1666156012395,
-      "ban": false
+    "6283894014399@s.whatsapp.net": {
+      "lastused": 1666664442275,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6287863856639@s.whatsapp.net": {
-      "lastused": 1666156004486,
-      "ban": false
+    "6282142917550@s.whatsapp.net": {
+      "lastused": 1666945055287,
+      "afk": 0,
+      "rafk": [
+        ""
+      ],
+      "bool": true
     },
-    "6289646664914@s.whatsapp.net": {
-      "lastused": 1666278030041,
-      "ban": false
-    },
-    "6285162796664@s.whatsapp.net": {
-      "lastused": 1666190947040,
-      "ban": false
-    },
-    "62895323231914@s.whatsapp.net": {
-      "lastused": 1666249133478,
-      "ban": false
-    },
-    "6285241426014@s.whatsapp.net": {
-      "lastused": 1666240611037,
-      "ban": false
-    },
-    "628381023602@s.whatsapp.net": {
-      "lastused": 1666265857831,
-      "ban": false
-    },
-    "628985586723@s.whatsapp.net": {
-      "lastused": 1666249083214,
-      "ban": false
-    },
-    "6281517707088@s.whatsapp.net": {
-      "lastused": 1666245428277,
-      "ban": false
+    "6287839067186@s.whatsapp.net": {
+      "lastused": 1666944839947,
+      "afk": 0,
+      "rafk": [
+        "testing"
+      ],
+      "bool": false
     },
     "6287734910547@s.whatsapp.net": {
-      "lastused": 1666288583182,
-      "ban": false
+      "lastused": 1666877984962,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6282395693998@s.whatsapp.net": {
+      "lastused": 1666944322255,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6285728625940@s.whatsapp.net": {
+      "lastused": 1666944836955,
+      "afk": 0,
+      "rafk": [
+        "tes"
+      ],
+      "bool": false
+    },
+    "628881663146@s.whatsapp.net": {
+      "lastused": 1666699066137,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6288990007937@s.whatsapp.net": {
+      "lastused": 1666878998174,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6282253533756@s.whatsapp.net": {
+      "lastused": 1666853532694,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6285888204823@s.whatsapp.net": {
+      "lastused": 1666718117283,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6281517707088@s.whatsapp.net": {
+      "lastused": 1666805988255,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6289513766044@s.whatsapp.net": {
+      "lastused": 1666775352194,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6282148045146@s.whatsapp.net": {
+      "lastused": 1666775604998,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6289524579489@s.whatsapp.net": {
+      "lastused": 1666824224892,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6285381039923@s.whatsapp.net": {
+      "lastused": 1666937713021,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6289646664914@s.whatsapp.net": {
+      "lastused": 1666885525598,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6282122334034@s.whatsapp.net": {
+      "lastused": 1666857995871,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
     "628970454454@s.whatsapp.net": {
-      "lastused": 1666265788574,
-      "ban": false
+      "lastused": 1666857611093,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6285651409344@s.whatsapp.net": {
-      "lastused": 1666278366795,
-      "ban": false
+    "6285760657298@s.whatsapp.net": {
+      "lastused": 1666937618284,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     },
-    "6285602806360@s.whatsapp.net": {
-      "lastused": 1666288435941,
-      "ban": false
+    "6285162796664@s.whatsapp.net": {
+      "lastused": 1666885532605,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6285241426014@s.whatsapp.net": {
+      "lastused": 1666889520120,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6289604297720@s.whatsapp.net": {
+      "lastused": 1666934090622,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "6285654077688@s.whatsapp.net": {
+      "lastused": 1666940712760,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
+    },
+    "62895323231914@s.whatsapp.net": {
+      "lastused": 1666944718565,
+      "afk": 0,
+      "rafk": [],
+      "bool": false
     }
   },
   "chat": {
-    "120363044348536706@g.us": {
-      "join": 1666384564724,
-      "add": 1324,
-      "detect": true,
-      "link": false,
-      "antidel": false,
-      "antilink": false,
-      "antivn": false,
-      "antistik": false,
-      "antibot": false,
-      "cht": 0
-    },
     "120363028169856287@g.us": {
-      "join": 1666385985228,
-      "add": 1324,
-      "detect": true,
-      "link": false,
-      "antidel": false,
-      "antilink": false,
-      "antivn": false,
-      "antistik": false,
-      "antibot": true,
-      "cht": 0
-    },
-    "120363041493745571@g.us": {
-      "join": 1666434566454,
-      "add": 1324,
-      "detect": true,
-      "link": true,
-      "antidel": false,
-      "antilink": false,
-      "antivn": false,
-      "antistik": false,
-      "antibot": true,
-      "antiluar": false,
-      "ban": false,
-      "cht": 0
-    },
-    "120363044734621673@g.us": {
-      "join": 1666384571285,
-      "add": 1324,
       "cht": 0,
       "ban": false,
       "detect": true,
@@ -179,15 +185,30 @@
       "antilink": false,
       "antivn": false,
       "antistik": false,
-      "antibot": false
+      "antibot": false,
+      "antiluar": false,
+      "antiimg": false,
+      "antivid": false
+    },
+    "120363041493745571@g.us": {
+      "cht": 0,
+      "ban": false,
+      "detect": true,
+      "link": true,
+      "antidel": false,
+      "antilink": false,
+      "antivn": false,
+      "antistik": false,
+      "antibot": false,
+      "antiluar": false
     }
   },
   "set": {
     "6282142917550@s.whatsapp.net": {
       "update": [],
-      "blgc": [],
-      "public": false,
-      "call": true
+      "public": true,
+      "call": true,
+      "afk": []
     }
   }
 }

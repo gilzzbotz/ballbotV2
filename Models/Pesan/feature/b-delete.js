@@ -1,5 +1,4 @@
-export const handle = async (m, q, conn, grup) => {
-	let { isBotAdmin } = grup
+export const handle = async (m, { q, conn, isBotAdmin }) => {
 	if (m.react) return conn.sendMessage(m.chat, {delete: m.rkey})
 	if (!m.quoted) return conn.sendteks(m.chat, 'Reply pesan yg ingin kau lenyapkan dari bumi', m)
 	if (m.quoted.isBot) {

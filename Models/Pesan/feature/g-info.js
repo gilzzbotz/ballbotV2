@@ -1,6 +1,5 @@
-export const handle = async (m, q, conn, grup) => {
+export const handle = async (m, { q, conn, meta, isBotAdmin, isAdmin }) => {
 	if (!m.isGc) return conn.sendteks(m.chat, q.forgc, m)
-	let { meta, isBotAdmin, isAdmin } = grup
 	if (m.query == 'link') {
 		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
 			if (isAdmin) {
@@ -103,6 +102,30 @@ export const handle = async (m, q, conn, grup) => {
 		if (!conn.db.data.chat[m.chat].antistik) return conn.sendteks(m.chat, q.unactive, m)
 		conn.db.data.chat[m.chat].antistik = false
 		conn.sendteks(m.chat, q.sukses, m)
+	} else if (m.query == 'vidon') {
+		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
+		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
+		if (conn.db.data.chat[m.chat].antivid) return conn.sendteks(m.chat, q.active, m)
+		conn.db.data.chat[m.chat].antivid = true
+		conn.sendteks(m.chat, q.sukses, m)
+	} else if (m.query == 'vidoff') {
+		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
+		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
+		if (!conn.db.data.chat[m.chat].antivid) return conn.sendteks(m.chat, q.unactive, m)
+		conn.db.data.chat[m.chat].antivid = false
+		conn.sendteks(m.chat, q.sukses, m)
+	} else if (m.query == 'imgon') {
+		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
+		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
+		if (conn.db.data.chat[m.chat].antiimg) return conn.sendteks(m.chat, q.active, m)
+		conn.db.data.chat[m.chat].antiimg = true
+		conn.sendteks(m.chat, q.sukses, m)
+	} else if (m.query == 'imgoff') {
+		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
+		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
+		if (!conn.db.data.chat[m.chat].antiimg) return conn.sendteks(m.chat, q.unactive, m)
+		conn.db.data.chat[m.chat].antiimg = false
+		conn.sendteks(m.chat, q.sukses, m)
 	} else if (m.query == 'boton') {
 		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
 		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
@@ -127,19 +150,6 @@ export const handle = async (m, q, conn, grup) => {
 		if (!conn.db.data.chat[m.chat].antiluar) return conn.sendteks(m.chat, q.unactive, m)
 		conn.db.data.chat[m.chat].antiluar = false
 		conn.sendteks(m.chat, q.sukses, m)
-	} else if (m.query == 'banon') {
-		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
-		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
-		if (global.ban.map(u=>u).includes(m.chat)) return conn.sendteks(m.chat, q.active, m)
-		global.ban.push(m.chat)
-		conn.sendteks(m.chat, q.sukses, m)
-	} else if (m.query == 'banoff') {
-		if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
-		if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
-		if (!global.ban.map(u=>u).includes(m.chat)) return conn.sendteks(m.chat, q.active, m)
-		let u = global.ban.indexOf(m.chat)
-		global.ban.splice(u, 1)
-		conn.sendteks(m.chat, q.sukses, m)
 	} else {
 		let list = []
 		let teks = `INFO GROUP \n\n`
@@ -154,6 +164,8 @@ export const handle = async (m, q, conn, grup) => {
 			 teks += `Anti link: *${conn.db.data.chat[m.chat].antilink ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti VN: *${conn.db.data.chat[m.chat].antivn ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti Sticker: *${conn.db.data.chat[m.chat].antistik ? 'hidup' : 'mati'}*\n`
+			 teks += `Anti Image: *${conn.db.data.chat[m.chat].antiimg ? 'hidup' : 'mati'}*\n`
+			 teks += `Anti Video: *${conn.db.data.chat[m.chat].antivid ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti Bot: *${conn.db.data.chat[m.chat].antibot ? 'hidup' : 'mati'}*\n`
 			 teks += `Anti Nomor Luar: *${conn.db.data.chat[m.chat].antiluar ? 'hidup' : 'mati'}*\n`
 		list.push(['Link Group ini', '.info link', 'Link group whatsapp ini'])
@@ -173,6 +185,10 @@ export const handle = async (m, q, conn, grup) => {
 			else list.push(['Hidupkan anti VN', '.info vnon', 'melarang member untuk VN in group'])
 			if (conn.db.data.chat[m.chat].antistik) list.push(['Matikan anti stiker', '.info stikoff', 'matikan larangan member untuk kirim stiker di group'])
 			else list.push(['Hidupkan anti stiker', '.info stikon', 'melarang member untuk Kirim stiker in group'])
+			if (conn.db.data.chat[m.chat].antiimg) list.push(['Matikan anti Gambar', '.info imgoff', 'matikan larangan member untuk kirim gambar di group'])
+			else list.push(['Hidupkan anti gambar', '.info imgon', 'melarang member untuk Kirim gambar in group'])
+			if (conn.db.data.chat[m.chat].antivid) list.push(['Matikan anti Video', '.info vidoff', 'matikan larangan member untuk kirim video di group'])
+			else list.push(['Hidupkan anti video', '.info vidon', 'melarang member untuk Kirim video in group'])
 			if (conn.db.data.chat[m.chat].antibot) list.push(['Matikan anti bot', '.info botoff', 'terima semua bot yang masuk ke group selain bot ini'])
 			else list.push(['Hidupkan anti bot', '.info boton', 'Tolak semua bot yang masuk ke group selain bot ini'])
 			if (conn.db.data.chat[m.chat].antiluar) list.push(['Matikan anti Nomor luar', '.info luaroff', 'Bot akan mematikan penolakan user Nomor luar yang join'])

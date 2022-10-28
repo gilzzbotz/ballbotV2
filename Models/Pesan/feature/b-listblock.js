@@ -1,10 +1,9 @@
-export const handle = async (m, q, conn) => {
-	let list = await conn.fetchBlocklist()
+export const handle = async (m, { q, d, conn, lblock }) => {
 	let teks = '====[  LIST BLOCKED  ]====\n\n'
-		 teks += `Total: ${list.length}\n`
-	for (let u of list) teks += `@${u.split('@')[0]}\n`
+		 teks += `Total: ${lblock.length}\n`
+	for (let u of lblock) teks += `wa.me/${u.split('@')[0]}\n`
 	let but = [
 			['Minta unblock', '.owner'],
 		]
-	conn.butteks(m.chat, teks, q.name, but, m)
+	conn.butteks(m.chat, teks, q.name, but, d.f1('List block bot', ''))
 }

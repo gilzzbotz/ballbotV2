@@ -33,6 +33,7 @@
   "homepage": "https://github.com/bolaxd/ballbot-v2#readme",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
+    "@bochilteam/scraper": "^3.0.0",
     "baileys": "5.0.8",
     "file-type": "^18.0.0",
     "fs": "^0.0.1-security",

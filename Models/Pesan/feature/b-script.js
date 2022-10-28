@@ -1,4 +1,4 @@
-export const handle = (m, q, conn, bb) => {
+export const handle = (m, { q, conn, bb }) => {
 	let teks = `[				Source Code Bot ini				]\n\n`
 		teks += `Kunjungi Github ${q.name} :\n`
 		teks += `${q.home}\n`

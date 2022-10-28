@@ -17,41 +17,76 @@
 <a href="#"><img title="MAINTENED" src="https://img.shields.io/badge/MAINTENED-YES-%23833AB4?style=flat-square"/></a>
 </p>
 
-## How to pakai?
+### Anjuran :v
+Sebelom kamu menggunakan repository ini alangkah baik nya untuk memberi star ke repo ini :)
+tapi klo ngga mau juga gpp gamasalah mas :)
+
+### Cara menggunakan Repo ini
+Persiapan for termux:
 ```bash
-> git clone https://github.com/bolaxd/ballbotV2
+$ pkg install git
+$ pkg install nodejs-lts
+$ git -v
+$ nodejs -v
+$ npm -v
 ```
-## Install dependency
-Masuk ke Direktory dulu
+Cara ambil script ini
 ```bash
-> cd ballbotV2
+$ git clone https://github.com/bolaxd/ballbotV2
+$ cd ballbotV2-main
 ```
-```bash
-> npm install
-```
-Or
-```bash
-> yarn install
-```
-## How to setting?
+Setting dulu di code editor kalian masing masing
 ```Setting/settings.js```
 ```js
-        name: 'bolaxd',
-	developer: ['6281949742417', '6287839067186'],
-	moderator: [],
+const config = {
+	name: 'bolaxd', //nama sih
+	developer: ['6285728625940', '13068016884'], //Nomor owner
+	moderator: [], //Nomor mod [kalo ada]
 	browser: ['bolaxd', 'safari', '1.0.0'],
-	autoload: 30000,
-	sensitive: 0.7, // Kesensitivitas command
-	namedb: 'database',
 	gcbot: ['120363041493745571@g.us'], /* Only ID group */
+	thumb: 'https://telegra.ph/file/145c06fa8c8b4ee92b203.jpg',
+	thumb2: 'https://telegra.ph/file/7eb1fc815b59e24c07ab0.jpg',
+	autoload: 20000, // Load DB [ ini udah Fix coi ]
+	sensitive: 0.7, // Kesensitivitas command
+	longbc: 7000, // Long BC adalah Penjagaan Broadcast anti banned 
+	mingc: 20, // Minimal Bot Join group 
+	freeadd: 7, // Selain Owner yang joinin bot ke group [ free add ]
+	namedb: 'database', // Nama Database 
 ```
-## How to jalanin?
+Ubah Message fail nya ada di Folder setting.js
+```Setting/setting.js```
+```js
+	connect: 'Bot telah tersambung ke Konneksi server Whatsapp web',
+	sukses: 'Berhasil :)',
+	gagal: 'Kegagalan :(, mohon ulangi command anda\nJika ini salah Mohon report ke owner',
+	owner: 'Khususon Owner',
+	forgc: 'Untuk di group :]',
+	leave: 'Hai kak, Saya diperintahkan Owner untuk keluar dari group ini :)\nMohon maaf ya kak jika bot punya banyak kesalahan :)\nGood bye kak',
+	forimg: 'Kirim image lalu dengan caption command / atau kirim image dulu lalu di reply text command',
+	forteks: 'Reply atau tag member atau tulis nomor member setelah command',
+	teks: 'Reply teks / masukan karakter setelah command',
+	admin: 'Kamu bukan orang dalam-_\nKhusus admin',
+	botadmin: 'bot bukan orang dalem-_\nAdminin dong',
+	active: 'Sebelom nya sudah aktif :v',
+	unactive: 'Sebelom nya sudah tidak aktif :v',
+	aslink: 'Pasanglah Link setelah command',
+	gcouttime: 'Hai Kak, Bot ini masa aktifnya telah habis, Bot akan keluar otomatis',
+	linkadm: 'Admin Group tidak mengijinkan link group untuk di share :)',
+	notext: 'Teks nya mana?',
+	wait: 'Sek Loading...',
+	ok: 'Oke Min',
+}
+
+export default config;
+```
+
+setelah setting di code editor di termux run lah dengan perintah dibawah ini
 ```bash
-> npm test 
+$ npm start
 ```
 
 ## Penulis
 [![bolaxd](https://github.com/bolaxd.png?size=100)](https://github.com/bolaxd)
 ## Big Thanks To
-[![Adiwajshing](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajsing)
+[![Amiruldev20](Amiruldev20)](https://github.com/Amiruldev20)
 [![Fokusdotid](https://github.com/Fokusdotid.png?size=100)](https://github.com/Fokusdotid)

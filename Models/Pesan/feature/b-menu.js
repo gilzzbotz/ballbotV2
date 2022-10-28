@@ -1,50 +1,20 @@
-export const handle = (m, conn, q, d) => {
-	let bot = [
-			['menu', ''],
-			['owner', ''],
-			['groupbot', ''],
-			['script', ''],
-			['delete', ''],
-			['listblock', ''],
-		]
-	let grup = [
-			['info', ''],
-			['grup', ''],
-			['hidetag', ''],
-			['tagall', ''],
-			['setname', ''],
-			['setdesc', ''],
-			['setppgc', ''],
-			['kick', ''],
-			['add', ''],
-			['demote', ''],
-			['promote', ''],
-		]
-	let owner = [
-			['setppbot', ''],
-			['setnamebot', ''],
-			['setstatus', ''],
-			['listgc', ''],
-			['block', ''],
-			['modes', ''],
-			['join', ''],
-		]
-	let react = [
-			['😡', '=> .kick'],
-			['🤪', '=> .add'],
-			['😎', '=> .promote'],
-			['😒', '=> .demote'],
-			['😌', '=> .delete'],
-		]
-	let teks = `[				Menu				]\n`
-		teks += '\n*-- BOT --*\n'
-		for (let u of bot) teks += `*${m.preff + u[0]}* ${u[1]}\n`
-		teks += '\n*-- GROUP --*\n'
-		for (let o of grup) teks += `*${m.preff + o[0]}* ${o[1]}\n`
-		teks += '\n*-- OWNER --*\n'
-		for (let p of owner) teks += `*${m.preff + p[0]}* ${p[1]}\n`
-		teks += '*%*\n*~>*\n*>>*\n'
-		teks += '\n*-- COMMAND REACTION --*\n'
-		for (let b of react) teks += `${b[0]} *${b[1]}*\n`
-	conn.sendteks(m.chat, teks, d.f1('Simple Menu ballbot v2', ''), d.f2('Github:me', q.thumb2, q.home))
+import fs from 'fs';
+
+const json = JSON.parse(fs.readFileSync('./Models/Pesan/commands.json'));
+
+export const handle = async (m, { q, conn, d, bb, getpp }) => {
+	const getmenu = (nama, ciri, db) => {
+		let more = String.fromCharCode(8206).repeat(4001)
+		let teks = `\n*${nama}*\n`
+		for (let o of db) if (o[1].startsWith(ciri)) teks += bb(m.preff+o[0])+'\n'
+		teks += more
+		return teks
+	}
+	let teks = `					DAFTAR MENU		\n`
+		teks += getmenu('BOT', 'b-', json[0])
+		teks += getmenu('FUN', 'f-', json[0])
+		teks += getmenu('GROUP', 'g-', json[0])
+		teks += getmenu('INTERNET', 'i-', json[0])
+		teks += getmenu('OWNER', 'o-', json[0])
+	conn.sendteks(m.chat, teks, d.f1('Simple menu :v',''), d.f2('Github:me',await getpp(m.sender), q.home))
 }

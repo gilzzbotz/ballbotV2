@@ -1,20 +1,9 @@
 const { proto, downloadContentFromMessage, getContentType } = (await import('baileys')).default;
 import q from '../../Setting/settings.js';
 
-const dlMessage = async (message) => {
-	try {
-		let mime = (message.msg || message).mimetype || ''
-		let messageType = message.mtype ? message.mtype.replace(/Message/gi, ''): mime.split('/')[0]
-		const stream = await downloadContentFromMessage(message, messageType)
-		let buffer = Buffer.from([])
-		for await(const chunk of stream) buffer = Buffer.concat([buffer, chunk])
-		return buffer
-	} catch (e) {
-		console.log(e);
-	}
-}
+const dlMessage=async(message)=>{try{let mime=(message.msg||message).mimetype||'';let messageType = message.mtype ? message.mtype.replace(/Message/gi, ''): mime.split('/')[0];const stream=await downloadContentFromMessage(message,messageType);let buffer = Buffer.from([]);for await(const chunk of stream) buffer = Buffer.concat([buffer, chunk]);return buffer}catch(e){console.log(e)}};
 // jangan di utek utek coii, biarin aja ini
-export const parser = (serve, m, s) => {
+export default (serve, m, s) => {
 	try {
 		if (!m) return m
 		let M = proto.WebMessageInfo
@@ -22,18 +11,21 @@ export const parser = (serve, m, s) => {
 			m.id = m.key.id
 			m.isBaileys = m.id.startsWith('BAE5') && m.id.length === 16
 			m.chat = m.key.remoteJid
-			m.bot = serve.createJid(serve.user.id)
 			m.fromMe = m.key.fromMe
 			m.isGc = m.chat.endsWith(q.idgc)
-			m.sender = serve.createJid(m.fromMe && serve.user.id || m.participant || m.key.participant || m.chat || '')
-			m.isOwn = m.fromMe || q.developer.map(v=> v + q.idwa).includes(m.sender)
-			m.isMod = q.moderator.map(v=> v + q.idwa).includes(m.sender)
 			if (m.isGc) m.participant = serve.createJid(m.key.participant) || ''
+			m.sender = serve.createJid(m.fromMe && serve.user.id || m.participant || m.key.participant || m.chat || '')
+			m.isOwn = q.developer.map(v=> v+q.idwa).includes(m.sender)
+			m.isMod = q.moderator.map(v=> v+q.idwa).includes(m.sender)
 		}
 		if (m.message) {
+			if (m?.message?.messageContextInfo) delete m.message.messageContextInfo
+			if (m?.message?.senderKeyDistributionMessage) delete m.message.senderKeyDistributionMessage
 			m.mtype = getContentType(m.message) /*Dapatkan dan meng Inisialisasi content ambil dari baileys*/
 			m.msg = (m.mtype == 'viewOnceMessage' ? m.message[m.mtype].message[getContentType(m.message[m.mtype].message)] : m.message[m.mtype])
+			if (m.message['call']) return
 			let quntul = m.quoted = m.msg.contextInfo ? m.msg.contextInfo.quotedMessage : null
+			// console.log(quntul)
 			m.mentionedJid = m.msg.contextInfo ? m.msg.contextInfo.mentionedJid : []
 			m.react = m.mtype == 'reactionMessage' ? m.message[m.mtype] : null
 			if (m.react) {
@@ -74,7 +66,6 @@ export const parser = (serve, m, s) => {
 					message: quntul,
 					...(m.isGc ? { participant: m.quoted.sender } : { participant: undefined })
 				});
-				m.quoted.delete = () => serve.sendMessage(m.quoted.chat, { delete: vM.key })
 			}
 			m.text = m.msg.text || m.msg.caption || m.message.conversation || m.msg.contentText || m.msg.selectedDisplayText || m.msg.title || ''
 	   	let cmdd = (m.mtype === 'conversation') ? m.message.conversation: (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption: (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()

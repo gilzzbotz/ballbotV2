@@ -1,27 +1,57 @@
-import b from '../Fake/function.js';
 
-export const detectGroup = async (p, q, m) => {
+export default async (m, { up, q, d, conn }) => {
 	try {
-		let from = p.key.remoteJid
-		let bot = await q.createJid(q.user.id)
-		let parti = p.key.participant
-		let stype = p.messageStubType
-		let mstub = stype ? p.messageStubParameters.join() : ''
-		if (!m.chat.endsWith('@g.us')) return
-		if (q.db.data.chat[m.chat].detect) {
-			let greeting = (stype == 21) ? q.sendteks(from, `@${parti.split('@')[0]} Telah mengubah Judul group menjadi *${mstub}*`, b.f1('Notifikasi Update Participants', ''), {mentions: [parti]})
-			: (stype == 32) ? q.sendteks(from, `@${mstub.split("@")[0]} Telah keluar dari group :(`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub]})
-			: (stype == 71) ? q.sendteks(from, `@${mstub.split("@")[0]} Telah bergabung ke grup Dengan undangan bot`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub]})
-			: (stype == 27) ? q.sendteks(from, parti === undefined ? ` @${mstub.split('@')[0]} Telah bergabung menggunakan tautan group ini` : `Admin @${parti.split('@')[0]} telah menambahkan @${mstub.split('@')[0]} Kegroup ini`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub, parti]})
-			: (stype == 28 && !mstub.includes(bot)) ? q.sendteks(from, `@${parti.split('@')[0]} Telah mengeluarkan @${mstub.split('@')[0]} dari group ini`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub, parti]})
-			: (stype == 29 && !mstub.includes(bot)) ? q.sendteks(from, `@${parti.split('@')[0]} Telah mempromosikan @${mstub.split('@')[0]} sebagai admin`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub, parti]})
-			: (stype == 30 && !mstub.includes(bot)) ? q.sendteks(from, `@${parti.split('@')[0]} Telah menurunkan @${mstub.split('@')[0]} Jabatannya sebagai admin`, b.f1('Notifikasi Update Participants', ''), {mentions: [mstub, parti]})
-			: (stype == 29 && mstub.includes(bot)) ? q.sendteks(from, `@${parti.split('@')[0]} Telah mempromosikan bot sebagai admin`, b.f1('Notifikasi Update Participants', ''), {mentions: [parti]})
-			: (stype == 30 && mstub.includes(bot)) ? q.sendteks(from, `@${parti.split('@')[0]} Telah menurunkan Jabatan bot sebagai admin`, b.f1('Notifikasi Update Participants', ''), {mentions: [parti]})
-			: '';
-			return greeting
+		let parti = up.key.participant;
+		let mstub = up.messageStubType ? up.messageStubParameters.join() : '';
+		const r = (teks) => (teks).replace('@user', '@'+mstub.split('@')[0] || '').replace('@sub', mstub || '').replace('@admin', '@'+parti.split('@')[0] || '');
+		if (m.isGc) {
+			if (conn.db.data.chat[m.chat].detect) {
+				switch (up.messageStubType) {
+					case 21: { // DETEK SUBJECT
+						throw r(q.fsub);
+					} break;
+					case 22: { // DETEK PP UPDATE GC
+						throw r(q.fppgc);
+					} break;
+					case 27: { // ADD
+						if (!up.key.participant) throw r(q.faddlink);
+						if (!up.key.participant && m.isOwn) throw r(q.fownerjoin);
+						throw r(q.faddadmin);
+					} break;
+					case 28: { // KICK
+						throw r(q.fkick);
+					} break;
+					case 29: { // PROMOTE
+						throw r(q.fpm);
+					} break;
+					case 30: { // DEMOTE
+						throw r(q.fdm);
+					} break;
+					case 32: { // LEAVE
+						throw r(q.fout);
+					} break;
+					case 71: { // ADD INVITE
+						throw r(q.faddinv);
+					} break;
+					default:
+					const p = (parse) => parse.replace('@jmlh', (m.msg.ephemeralExpiration == 7776000 ? '90 Hari' : m.msg.ephemeralExpiration == 604800 ? '7 Hari' : m.msg.ephemeralExpiration == 86400 ? '24 Jam' : '') || '');
+					if (/protocolMessage/.test(m.mtype) && m.msg.ephemeralExpiration && m.msg.type == 3) throw p(r(q.fephe));
+					else if (/protocolMessage/.test(m.mtype) && !m.msg.ephemeralExpiration && m.msg.type == 3) throw r(q.fofephe);
+				}
+			}
+		} else {
+			switch (up.messageStubType) {
+				case 40: {
+					let teks = `User : @${up.key.remoteJid.split('@')[0]}\nBaru saja telpon bot\nMatikan Notif ini di /setting jika ini mengganggu\nHidupkan Auto block ketika telepon di /setting`
+					conn.sendteks(q.developer[0]+q.idwa, teks, d.f1('Notifikasi Telepon',''), {mentions: await conn.ments(teks)})
+				} break;
+				case 41: {
+					let teks = `User : @${up.key.remoteJid.split('@')[0]}\nBaru saja video call bot\nMatikan Notif ini di /setting jika ini mengganggu\nHidupkan Auto block ketika telepon di /setting`
+					conn.sendteks(q.developer[0]+q.idwa, teks, d.f1('Notifikasi Telepon',''), {mentions: await conn.ments(teks)})
+				} break;
+			}
 		}
 	} catch (e) {
-		console.log(e)
+		conn.sendteks(m.chat, e, d.f1('Notifikasi Update Group', ''), {mentions: await conn.ments(e)})
 	}
 }

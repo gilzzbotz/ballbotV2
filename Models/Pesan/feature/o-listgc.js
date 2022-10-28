@@ -1,4 +1,4 @@
-export const handle = async (m, q, conn, findAdmin) => {
+export const handle = async (m, { q, conn, findAdmin }) => {
 	if (!m.isOwn) return conn.sendteks(m.chat, q.owner, m)
 	let bot = await conn.createJid(conn.user.id);
 	if (m.args[0] === 'detail') {
@@ -38,27 +38,24 @@ export const handle = async (m, q, conn, findAdmin) => {
 	} else if (m.args[0] === 'leave') {
 		if (!m.isOwn) return conn.sendteks(m.chat, q.owner, m)
 		conn.sendteks(m.args[1], q.leave, m)
-		setTimeout(async function() {
+		await sleep(4000)
 			let code = await conn.groupLeave(m.args[1])
 				.then(v=>conn.sendteks(m.chat, q.sukses, m))
 				.catch(e=> conn.sendteks(m.chat, q.gagal, m))
-		}, 4000);
 	} else if (m.args[0] === 'tutup') {
 		if (!m.isOwn) return conn.sendteks(m.chat, q.owner, m)
 		conn.sendteks(m.args[1], 'Hai kak,\nGroup ini di tutup Oleh owner Secara otomatis\nBuka Jika ini salah', m)
-		setTimeout(async function() {
+		await sleep(4000)
 			let code = await conn.groupSettingUpdate(m.args[1], 'announcement')
 				.then(v=>conn.sendteks(m.chat, q.sukses, m))
 				.catch(e=> conn.sendteks(m.chat, q.gagal, m))
-		}, 4000);
 	} else if (m.args[0] === 'buka') {
 		if (!m.isOwn) return conn.sendteks(m.chat, q.owner, m)
 		conn.sendteks(m.args[1], 'Hai kak,\nGroup ini di buka Oleh owner Secara otomatis\nTutup jika ini salah', m)
-		setTimeout(async function() {
+		await sleep(4000)
 			let code = await conn.groupSettingUpdate(m.args[1], 'not_announcement')
 				.then(v=>conn.sendteks(m.chat, q.sukses, m))
 				.catch(e=> conn.sendteks(m.chat, q.gagal, m))
-		}, 4000);
 	} else if (m.args[0] === 'ban') {
 		if (!m.isOwn) return conn.sendteks(m.chat, q.owner, m)
 		if (conn.db.data.chat[m.args[1]].ban) return conn.sendteks(m.chat, q.active, m)
@@ -74,7 +71,6 @@ export const handle = async (m, q, conn, findAdmin) => {
 	} else {
 		let list = []
 		let gcall = Object.values(await conn.groupFetchAllParticipating().catch(_=> null))
-		// console.log(uu);
 		for (let u of gcall) {
 			let on = [`${u.subject}`, `.listgc detail ${u.id}`, `Pembuat: ${u.owner ? u.owner.split("@")[0] : 'Sudah keluar'} | ID: ${u.id} \nKlik untuk lihat detail`]
 			list.push(on);

@@ -1,6 +1,5 @@
-export const handle = async (m, q, conn, grup) => {
-	let { isBotAdmin, isAdmin } = grup
-	if (!isAdmin) return conn.sendteks(m.chat, q.admin, m)
+export const handle = async (m, { q, conn, isBotAdmin, isAdmin }) => {
+	if (!isAdminn && !m.isOwn) return conn.sendteks(m.chat, q.admin, m)
 	if (!isBotAdmin) return conn.sendteks(m.chat, q.botadmin, m)
 	let user = m.react ? m.rtarget : m.mentionedJid[0] ? m.mentionedJid[0]: m.quoted ? m.quoted.sender: m.query.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 	conn.groupParticipantsUpdate(m.chat, [user], 'add')

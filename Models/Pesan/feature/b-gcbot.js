@@ -1,4 +1,4 @@
-export const handle = async (m, q, conn) => {
+export const handle = async (m, { q, conn }) => {
 	let teks = `Group Ballbot whatsapp\n\n`
 	let p = 1
 	for (let u of q.gcbot) {

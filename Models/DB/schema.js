@@ -1,37 +1,38 @@
-process.on('uncaughtException', console.error);
-const isNum = x => typeof x == 'number' && isNaN(x);
-
-export const db = async (q, serve, smsg) => {
+export const db = async (m, { q, conn, isNum, bot }) => {
 	try {
 // Untuk User nya [ otomatis add pas gk ada ]
-		let user = serve.db.data.user[smsg.sender]
-		if (typeof user !== 'object') serve.db.data.user[smsg.sender] = {}
+		let user = conn.db.data.user[m.sender]
+		if (typeof user !== 'object') conn.db.data.user[m.sender] = {}
 		if (user) {
-		if (!isNum(user.lastused)) serve.db.data.user[smsg.sender].lastused = new Date*1
-		if (!'ban' in user) serve.db.data.user[smsg.sender].ban = false
-		} else serve.db.data.user[smsg.sender] = {
+		if (!isNum(user.lastused)) conn.db.data.user[m.sender].lastused = new Date*1
+		if (!isNum(user.afk)) conn.db.data.user[m.sender].afk = 0
+		if (!('rafk') in user) conn.db.data.user[m.sender].rafk = []
+		if (!('bool') in user) conn.db.data.user[m.sender].bool = false
+		} else conn.db.data.user[m.sender] = {
 			lastused: new Date*1,
-			ban: false
+			afk: 0,
+			rafk: [],
+			bool: false,
 		}
 	// Group kalo belom ada ini buat bukti
-		if (smsg.chat.endsWith(q.idgc)) {
-			let cht = serve.db.data.chat[smsg.chat]
-			if (typeof cht !== 'object') serve.db.data.chat[smsg.chat] = {}
+		if (m.isGc) {
+			let cht = conn.db.data.chat[m.chat]
+			if (typeof cht !== 'object') conn.db.data.chat[m.chat] = {}
 			if (cht) {
-				if (!isNum(cht.join)) serve.db.data.chat[smsg.chat].join = new Date()*1
-				if (!isNum(cht.add)) serve.db.data.chat[smsg.chat].add = 1324
-				if (!isNum(cht.cht)) serve.db.data.chat[smsg.chat].cht = 0
-				if (!'ban' in cht) serve.db.data.chat[smsg.chat].ban = false
-				if (!'detect' in cht) serve.db.data.chat[smsg.chat].detect = true
-				if (!'link' in cht) serve.db.data.chat[smsg.chat].link = false
-				if (!'antidel' in cht) serve.db.data.chat[smsg.chat].antidel = false
-				if (!'antilink' in cht) serve.db.data.chat[smsg.chat].antilink = false
-				if (!'antivn' in cht) serve.db.data.chat[smsg.chat].antivn = false
-				if (!'antistik' in cht) serve.db.data.chat[smsg.chat].antistik = false
-				if (!'antibot' in cht) serve.db.data.chat[smsg.chat].antibot = false
-			} else serve.db.data.chat[smsg.chat] = {
-				join: new Date()*1,
-				add: 1324,
+				if (!isNum(cht.cht)) conn.db.data.chat[m.chat].cht = 0
+				if (!('ban') in cht) conn.db.data.chat[m.chat].ban = false
+				if (!('detect') in cht) conn.db.data.chat[m.chat].detect = true
+				if (!('link') in cht) conn.db.data.chat[m.chat].link = false
+				if (!('antidel') in cht) conn.db.data.chat[m.chat].antidel = false
+				if (!('antilink') in cht) conn.db.data.chat[m.chat].antilink = false
+				if (!('antivn') in cht) conn.db.data.chat[m.chat].antivn = false
+				if (!('antistik') in cht) conn.db.data.chat[m.chat].antistik = false
+				if (!('antiimg') in cht) conn.db.data.chat[m.chat].antiimg = false
+				if (!('antivid') in cht) conn.db.data.chat[m.chat].antivid = false
+				if (!('antibot') in cht) conn.db.data.chat[m.chat].antibot = false
+				if (!('antiluar') in cht) conn.db.data.chat[m.chat].antiluar = false
+				if (!('vote') in cht) conn.db.data.chat[m.chat].vote = []
+			} else conn.db.data.chat[m.chat] = {
 				cht: 0,
 				ban: false,
 				detect: true,
@@ -40,21 +41,21 @@ export const db = async (q, serve, smsg) => {
 				antilink: false,
 				antivn: false,
 				antistik: false,
+				antiimg: false,
+				antivid: false,
 				antibot: false,
+				antiluar: false,
 			}
 		}
 // Bot nya dah auto insert
-		let bb = await serve.createJid(serve.user.id);
-		let bot = serve.db.data.set[bb]
-		if (typeof bot !== 'object') serve.db.data.set[bb] = {}
-		if (bot) {
-			if (!('update') in bot) serve.db.data.set[bb].update = []
-			if (!('blgc') in bot) serve.db.data.set[bb].blgc = []
-			if (!('public') in bot) serve.db.data.set[bb].public = true
-			if (!('call') in bot) serve.db.data.set[bb].call = true
-		} else serve.db.data.set[bb] = {
+		let sett = conn.db.data.set[bot]
+		if (typeof sett !== 'object') conn.db.data.set[bot] = {}
+		if (sett) {
+			if (!('update') in sett) conn.db.data.set[bot].update = []
+			if (!('public') in sett) conn.db.data.set[bot].public = true
+			if (!('call') in sett) conn.db.data.set[bot].call = true
+		} else conn.db.data.set[bot] = {
 			update: [],
-			blgc: [],
 			public: true,
 			call: true
 		}

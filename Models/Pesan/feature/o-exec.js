@@ -1,14 +1,14 @@
 import { exec } from 'child_process';
-export const handle = async (m, conn) => {
+export const handle = async (m, { conn, d }) => {
 	if (!m.isOwn) return
-	if (!m.text.slice(2).length > 0) return conn.sendteks(m.chat, 'Masukan Query nya', m)
-	conn.sendteks(m.chat, 'Executing...', m)
+	if (!m.query) return
+	await conn.sendteks(m.chat, 'Executing...', m)
 	try {
-		exec(m.text.slice(2), (e, stdout) => {
-			if (e) return conn.sendteks(m.chat, e, m)
-			if (stdout) return conn.sendteks(m.chat, stdout, m)
-		})
+		exec(m.query, (e, stdout) => {
+			if (e) throw e;
+			if (stdout) throw stdout
+		}).catch(_=>_)
 	} catch (e) {
-		conn.sendteks(m.chat, e, m)
+		conn.sendteks(m.chat, e, d.f1(e, ''))
 	}
 }

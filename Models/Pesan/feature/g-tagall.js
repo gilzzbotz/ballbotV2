@@ -1,5 +1,4 @@
-export const handle = async (m, q, conn, grup) => {
-	let { isAdmin, isBotAdmin, members } = grup
+export const handle = async (m, { q, conn, isAdmin, isBotAdmin, members }) => {
 	if (!m.isGc) return conn.sendteks(m.chat, q.forgc, m);
 	if (!isAdmin) return conn.sendteks(m.chat, q.admin, m);
 	let uvuv = members.map(v => conn.createJid(v.id))
